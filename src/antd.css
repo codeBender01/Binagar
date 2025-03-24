@@ -1,0 +1,13 @@
+.ant-input {
+  font-family: Geo, sans-serif;
+}
+
+.ant-radio-wrapper .ant-radio-checked::after {
+  border: 1px solid #00496e !important;
+  background-color: #00496e;
+}
+
+.ant-radio-wrapper .ant-radio-checked .ant-radio-inner {
+  border: 1px solid #00496e !important;
+  background-color: #00496e;
+}

@@ -1,70 +1,44 @@
-@import "tailwindcss";
+@import "tailwindcss" important;
+@import "https://cssicon.space/css/icons.css";
 
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@font-face {
+  font-family: "Mont";
+  src: url("../public/fonts/Montserrat-VariableFont_wght.ttf")
+    format("truetype");
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+@font-face {
+  font-family: "Geo";
+  src: url("../public/fonts/Geologica-VariableFont_CRSV\,SHRP\,slnt\,wght.ttf")
+    format("truetype");
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+@theme {
+  --font-main: Mont, sans-serif;
+  --font-geo: Geo, sans-serif;
+  --font-serif: serif;
+  --text-sm2: 12px;
+  --text-sm: 14px;
+  --text-lg: 22px;
+  --text-md: 18px;
+  --color-mainBlue: #00496e;
+  --color-textBlack: #262323;
+  --color-borderGray: #eae9e9;
+  --color-background: #f3f4f6;
+  --color-red: #ff0000;
+  --color-gray: #9ca3af;
+  --color-lightblue: #23a9ec;
+  --color-gray2: #4b5563;
+  --color-gray3: #929090;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
+/* get the styles for both icon*/
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.icon,
+.icon:before,
+.icon:after,
+.icon i,
+.icon i:before,
+.icon i:after {
+  transition: all 0.4s ease;
 }
