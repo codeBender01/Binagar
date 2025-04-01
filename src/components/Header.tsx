@@ -1,10 +1,11 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import logo from "../assets/logo.png";
 
 import { Input, Divider } from "antd";
 import PillButton from "./PillButton";
+import LoginModal from "./LoginModal";
 
 import { CiSearch } from "react-icons/ci";
 import { LuShoppingBasket } from "react-icons/lu";
@@ -17,6 +18,8 @@ import "../antd.css";
 
 const Header: FC = () => {
   const navigate = useNavigate();
+
+  const [openLoginModal, setOpenLoginModal] = useState(false);
 
   return (
     <header className="w-[100%] bg-white border-b-[1px] border-borderGray pb-[12px] h-fit">
@@ -73,9 +76,15 @@ const Header: FC = () => {
 
         <div className="flex items-center gap-[20px]">
           <PillButton text="Halanlarym" icon={<IoMdHeartEmpty />} />
-          <PillButton text="Profilim" icon={<IoPersonCircleOutline />} />
+          <PillButton
+            onClick={() => setOpenLoginModal(true)}
+            text="Profilim"
+            icon={<IoPersonCircleOutline />}
+          />
         </div>
       </div>
+
+      <LoginModal open={openLoginModal} setOpen={setOpenLoginModal} />
     </header>
   );
 };
