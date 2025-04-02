@@ -29,6 +29,27 @@
   --color-lightblue: #23a9ec;
   --color-gray2: #4b5563;
   --color-gray3: #929090;
+  --color-mainBlack: #1c2536;
+  --color-secondaryBlack: #111927;
+  --color-altBlack: #2f3746;
+  --color-textGray: #6c737f;
+  --color-secondaryGray: #9da4ae;
+  --color-purple: #6366f1;
+  --color-activeTabGray: #252e3e;
+  --color-bgGray: #e5e7eb;
+  --color-secBlackOp: #1119271f;
+  --color-deleteRed: #c8102e;
+  --color-green: #0b815a;
+  --color-lightGreen: #e2f7f0;
+  --color-paleGray: #fafbfb;
+  --color-yellow: #b54708;
+  --color-lightYellow: #fef2e1;
+  --color-blue: #0e7090;
+  --color-lightBlue: #d8edf2;
+  --color-lightRed: #fef3f2;
+
+  --breakpoint-lg2: 72rem;
+  --breakpoint-md2: 56rem;
 }
 
 /* get the styles for both icon*/

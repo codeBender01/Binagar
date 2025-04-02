@@ -1,5 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { PhoneLogin, EmailLogin } from "../interfaces/auth.interface";
+import {
+  PhoneLogin,
+  EmailLogin,
+  Verification,
+} from "../interfaces/auth.interface";
 import { ApiResponse } from "../interfaces/apiResponse.interface";
 
 export const clientAuthApi = createApi({
@@ -17,7 +21,15 @@ export const clientAuthApi = createApi({
         }),
       }
     ),
+    clientVerify: builder.mutation<ApiResponse<any>, Verification>({
+      query: (obj) => ({
+        url: "/auth/verify",
+        body: obj,
+        method: "POST",
+      }),
+    }),
   }),
 });
 
-export const { useClientLoginMutation } = clientAuthApi;
+export const { useClientLoginMutation, useClientVerifyMutation } =
+  clientAuthApi;

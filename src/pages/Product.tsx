@@ -14,12 +14,12 @@ const Product: FC = () => {
         <span className="text-gray">Home</span> /{" "}
         <span className="text-gray">Category</span> / Product
       </div>
-      <div className="text-[48px] text-textBlack font-bold font-geo">
+      <div className="text-[32px] md:text-[48px] md2:mb-4 text-textBlack font-bold font-geo">
         Product title
       </div>
 
-      <div className="flex justify-between items-center">
-        <div className="h-[550px] w-[55%] bg-white rounded-[4px]">
+      <div className="flex flex-col gap-4 md2:flex-row md2:gap-0 md2:justify-between items-center">
+        <div className="h-[500px] md2:h-[550px] w-[100%] md2:w-[45%] lg:w-[55%] bg-white rounded-[4px]">
           <img
             src={drill}
             alt=""
@@ -27,7 +27,7 @@ const Product: FC = () => {
           />
         </div>
 
-        <div className="w-[40%] bg-white rounded-3xl p-7 flex flex-col">
+        <div className="w-[100%] md2:w-[50%] lg:w-[40%] bg-white rounded-3xl p-7 flex flex-col">
           <div className="font-geo text-[20px] font-medium">Umumy maglumat</div>
           <ul className="font-geo flex flex-col gap-[12px] mt-1.5">
             <li className="flex justify-between gap-2 items-center">
@@ -55,9 +55,11 @@ const Product: FC = () => {
               </span>
             </li>
           </ul>
-          <div className="flex mt-4 justify-between items-center">
-            <div className="text-lg font-geo font-bold">50.90 tmt</div>
-            <Button className="bg-lightblue text-white h-[36px] border-none w-[45%] hover:text-lightblue hover:bg-white duration-200 cursor-pointer ">
+          <div className="flex flex-col gap-2 sm:gap-0 sm:flex-row mt-4 justify-between items-center">
+            <div className="text-lg font-geo font-bold self-start sm:self-center">
+              50.90 tmt
+            </div>
+            <Button className="bg-lightblue text-white h-[36px] border-none w-[100%] sm:w-[45%] hover:text-lightblue hover:bg-white duration-200 cursor-pointer ">
               <MdOutlineShoppingCart size={22} />
             </Button>
           </div>

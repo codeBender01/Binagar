@@ -12,7 +12,7 @@ const Brands: FC = () => {
         <div>Brand name</div>
         <div>view all</div>
       </div>
-      <div className="flex justify-between gap-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg2:grid-cols-4 gap-2">
         <BrandBox />
         <BrandBox />
         <BrandBox />

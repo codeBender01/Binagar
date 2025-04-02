@@ -33,7 +33,7 @@ const Basket: FC = () => {
       dataIndex: "productName",
       key: "productName",
       render: (val: string) => {
-        return <div className="font-geo">{val}</div>;
+        return <div className="font-geo text-nowrap">{val}</div>;
       },
     },
     {
@@ -47,9 +47,10 @@ const Basket: FC = () => {
     {
       title: "Sany",
       key: "amount",
+      width: 160,
       render: () => {
         return (
-          <div className="flex rounded-full border-[1px] border-borderGray items-center justify-between p-2 fotn-geo">
+          <div className="min-w-[120px] flex rounded-full border-[1px] border-borderGray items-center justify-between p-2 fotn-geo">
             <div
               onClick={() => {
                 if (amount === 1) {
@@ -116,14 +117,17 @@ const Basket: FC = () => {
         <span className="text-gray">Home</span> /{" "}
         <span className="text-gray">Category</span> / Basket
       </div>
-      <div className="text-[48px] text-textBlack font-bold font-geo">
+      <div className="text-[32px] md:text-[48px] md2:mb-4 text-textBlack font-bold font-geo">
         Basket
       </div>
 
-      <div className="flex justify-between">
-        <div className="w-[70%]">
+      <div className="flex flex-col gap-4 lg2:gap-0 lg2:flex-row justify-between">
+        <div className="w-[100%] lg2:w-[70%]">
           <div className="text-[18px] text-textBlack font-main">Harytlar</div>
           <Table
+            scroll={{
+              x: true,
+            }}
             className="w-[100%] mt-6 font-geo"
             columns={columns}
             dataSource={rows}
@@ -135,7 +139,7 @@ const Basket: FC = () => {
           </div>
         </div>
 
-        <div className="w-[25%] bg-white self-start border-[1px] border-borderGray rounded-4xl py-4 px-8">
+        <div className=" w-[100%] lg2:w-[25%] bg-white self-start border-none lg2:border-[1px] border-borderGray rounded-none lg2:rounded-4xl py-4 px-8">
           <div className="text-[22px] font-geo">Töleg görnüşi</div>
           <Radio.Group
             className="mt-2 flex-col flex gap-2"
@@ -157,18 +161,27 @@ const Basket: FC = () => {
         </div>
       </div>
 
-      <div className="w-[70%] bg-white flex flex-col gap-4 mt-8 py-4 px-4">
+      <div className="w-[100%] lg2:w-[70%] bg-white flex flex-col gap-4 mt-8 py-4 px-4">
         <div className="text-[20px] text-textBlack font-bold font-geo ">
           Müşderi maglumaty
         </div>
 
-        <div className=" flex items-center flex-wrap gap-2  ">
-          <Input placeholder="Doly adyňyz" className="h-[48px] w-[30%]" />
-          <Input placeholder="Telefon belgiňiz" className="h-[48px] w-[30%]" />
-          <Input placeholder="Salgyňyz" className="h-[48px] w-[30%]" />
+        <div className=" flex items-center flex-wrap gap-2">
+          <Input
+            placeholder="Doly adyňyz"
+            className="h-[48px] w-[100%] sm:w-[30%]"
+          />
+          <Input
+            placeholder="Telefon belgiňiz"
+            className="h-[48px] w-[100%] sm:w-[30%]"
+          />
+          <Input
+            placeholder="Salgyňyz"
+            className="h-[48px] w-[100%] sm:w-[30%]"
+          />
           <Input.TextArea
             placeholder="Goşmaça bellik"
-            className="w-[50%]"
+            className="w-[100%] sm:w-[50%]"
             rows={4}
           />
         </div>

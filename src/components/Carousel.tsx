@@ -14,7 +14,7 @@ const Carousel: FC = () => {
 
   return (
     <div className="w-[100%] flex justify-between">
-      <div className="w-[75%] h-[550px] relative">
+      <div className=" w-[100%] lg2:w-[75%] h-[100%] relative">
         <Swiper
           style={
             {
@@ -23,8 +23,11 @@ const Carousel: FC = () => {
             } as React.CSSProperties
           }
           navigation
-          modules={[Navigation, Pagination]}
-          className="w-[100%] h-[550px]"
+          modules={[Navigation, Pagination, Autoplay]}
+          className="w-[100%] "
+          autoplay={{
+            delay: 2000,
+          }}
           loop
           onSwiper={(swiper) => {
             setSwiper(swiper);
@@ -35,7 +38,7 @@ const Carousel: FC = () => {
           onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
         >
           <SwiperSlide>
-            <div className="w-[100%] h-[550px]">
+            <div>
               <img
                 src={img1}
                 alt=""
@@ -44,7 +47,7 @@ const Carousel: FC = () => {
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="w-[100%] h-[550px]">
+            <div>
               <img
                 src={img1}
                 alt=""
@@ -53,7 +56,7 @@ const Carousel: FC = () => {
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="w-[100%] h-[550px]">
+            <div>
               <img
                 src={img1}
                 alt=""
@@ -62,7 +65,7 @@ const Carousel: FC = () => {
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="w-[100%] h-[550px]">
+            <div>
               <img
                 src={img1}
                 alt=""
@@ -88,7 +91,7 @@ const Carousel: FC = () => {
       </div>
       <Swiper
         direction={"vertical"}
-        className="w-[20%] h-[550px]"
+        className="lg2:flex hidden w-[20%] h-[550px]"
         slidesPerView={4}
         modules={[Autoplay]}
         autoplay={{

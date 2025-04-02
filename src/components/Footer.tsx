@@ -4,15 +4,15 @@ import { Divider } from "antd";
 
 import logo from "../assets/logo.png";
 
+import { FaInstagram } from "react-icons/fa";
+import { FaTiktok } from "react-icons/fa6";
+import { MdAlternateEmail } from "react-icons/md";
+
 const Footer: FC = () => {
   return (
-    <footer className="bg-white mt-[60px] pt-[70px]">
-      <Divider className="m-0" />
-      <div className="w-[90%] mx-auto py-[20px]">
-        <div className="w-[75px] h-[50px]">
-          <img src={logo} alt="" className="w-[100%] h-[100%] object-cover" />
-        </div>
-        <div className="flex gap-[160px]">
+    <footer className="bg-white mt-[60px] pt-[50px]">
+      <div className="w-[90%] mx-auto py-[20px] flex flex-col gap-4 items-center">
+        <div className="flex flex-col gap-[40px] md:flex-row md:gap-[140px] lg:gap-[160px] self-start">
           <div className="flex flex-col gap-2 mt-[12px] w-fit">
             <div className="text-gray2 text-md font-semibold font-main">
               Maglumat
@@ -56,11 +56,28 @@ const Footer: FC = () => {
             </ul>
           </div>
         </div>
+        <div className="flex flex-col items-center">
+          <div className="w-[95px] h-[70px]">
+            <img src={logo} alt="" className="w-[100%] h-[100%] object-cover" />
+          </div>
+          <p className="w-[100%] my-5 mx-auto font-main text-sm2 text-gray2">
+            © 2019-2025 binagar.com. <br /> Ähli hukuklary goraglydyr.
+          </p>
+        </div>
+
+        <div className="flex items-center gap-4">
+          <div className="cursor-pointer hover:scale-110 duration-200">
+            <MdAlternateEmail size={20} />
+          </div>
+          <div className="cursor-pointer hover:scale-110 duration-200">
+            <FaInstagram size={20} />
+          </div>
+          <div className="cursor-pointer hover:scale-110 duration-200">
+            <FaTiktok />
+          </div>
+        </div>
       </div>
       <Divider className="m-0" />
-      <p className="w-[95%] my-5 mx-auto font-main text-sm2 text-gray2">
-        © 2019-2025 binagar.com. Ähli hukuklary goraglydyr.
-      </p>
     </footer>
   );
 };

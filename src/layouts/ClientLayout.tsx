@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 
 const ClientLayout: FC = () => {
   return (
-    <div className="flex flex-col bg-background min-h-[100vh]">
+    <div className="flex flex-col bg-background min-h-[100vh] pt-[22vh]">
       <Header />
       <Outlet />
       <Footer />

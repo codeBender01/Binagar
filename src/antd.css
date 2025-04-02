@@ -11,3 +11,29 @@
   border: 1px solid #00496e !important;
   background-color: #00496e;
 }
+
+.ant-btn:hover:enabled {
+  background-color: white !important;
+  color: #6366f1 !important;
+  border: 1px solid #6366f1 !important;
+}
+
+.ant-tabs .ant-tabs-tab-active .ant-tabs-tab-btn {
+  background-color: #fff; /* Change active tab color */
+  color: #6366f1 !important;
+  border-radius: 4px;
+}
+
+th.ant-table-cell {
+  background: #f8f9fa !important;
+  padding: 16px !important;
+  border-radius: 0 !important;
+}
+
+th.ant-table-cell::before {
+  display: none;
+}
+
+.ant-col.ant-form-item-label.css-dev-only-do-not-override-qnu6hi {
+  padding: 0 !important;
+}

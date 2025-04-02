@@ -1,9 +1,12 @@
-import { Modal, Input, Button } from "antd";
+import { Modal, Input, Button, message } from "antd";
 
 import { Dispatch, FC, SetStateAction, useState, useEffect } from "react";
 import formatTime from "../utils/formatTime";
 
-// import { useClientLoginMutation } from "../services/clientAuthApi";
+import {
+  useClientLoginMutation,
+  useClientVerifyMutation,
+} from "../services/clientAuthApi";
 
 interface LoginModalProps {
   open: boolean;
@@ -11,20 +14,38 @@ interface LoginModalProps {
 }
 
 const LoginModal: FC<LoginModalProps> = ({ open, setOpen }) => {
-  //   const [login] = useClientLoginMutation();
+  const [login] = useClientLoginMutation();
+  const [verify] = useClientVerifyMutation();
 
   const [activeTab, setActiveTab] = useState("phone");
   const [phone, setPhone] = useState("");
   const [countdown, setCountdown] = useState(60);
+  const [verificationNumber, setVerificationNumber] = useState<number | null>(
+    null
+  );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const numericValue = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters
+    const numericValue = e.target.value.replace(/\D/g, "");
     setPhone(numericValue);
   };
 
   const handleLogin = async () => {
-    // const res = await login({ phoneNumber: "+99364545775" });
-    setActiveTab("verify");
+    const res = await login({ phoneNumber: "+993" + phone });
+    if (res.data) {
+      setActiveTab("verify");
+    }
+  };
+
+  const handleVerify = async () => {
+    const res = await verify({
+      phoneNumber: "+993" + phone,
+      code: verificationNumber as number,
+    });
+
+    if (res.data) {
+      message.success("Success");
+      setOpen(false);
+    }
   };
 
   useEffect(() => {
@@ -102,6 +123,12 @@ const LoginModal: FC<LoginModalProps> = ({ open, setOpen }) => {
               inputMode="numeric"
               pattern="[0-9]*"
               type="number"
+              onChange={(e) => {
+                const numericValue = parseInt(
+                  e.target.value.replace(/\D/g, "")
+                );
+                setVerificationNumber(numericValue);
+              }}
             />
 
             <div className="font-geo text-[18px]">{formatTime(countdown)}</div>
@@ -109,7 +136,7 @@ const LoginModal: FC<LoginModalProps> = ({ open, setOpen }) => {
         )}
 
         <Button
-          onClick={handleLogin}
+          onClick={activeTab === "verify" ? handleVerify : handleLogin}
           className="bg-mainBlue text-white text-[16px] font-geo h-[40px]"
         >
           {activeTab === "verify" ? "Ugrat" : "Tassyklama kody ugrat"}
