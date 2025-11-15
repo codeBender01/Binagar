@@ -11,3 +11,15 @@ export interface Verification {
   email?: string;
   code: number;
 }
+
+export interface AuthResponseType {
+  accessToken: string;
+  user: {
+    email: null | string;
+    id: string;
+    name: string | null;
+    phoneNumber: string;
+    selectedAddressId: string | null;
+    username: string;
+  };
+}

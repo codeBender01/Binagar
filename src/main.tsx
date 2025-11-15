@@ -10,12 +10,16 @@ import App from "./App.tsx";
 import store from "./store/index.ts";
 import "@ant-design/v5-patch-for-react-19";
 
+import { ThemeProvider } from "./store/themeContext.tsx";
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>
+    <ThemeProvider>
+      <Provider store={store}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Provider>
+    </ThemeProvider>
   </StrictMode>
 );

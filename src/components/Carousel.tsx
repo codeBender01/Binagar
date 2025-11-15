@@ -3,7 +3,9 @@ import { FC, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
-import img1 from "../assets/img1.png";
+import img1 from "../assets/banner1.jpg";
+import img2 from "../assets/banner2.jpg";
+import img3 from "../assets/banner3.jpg";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -18,15 +20,15 @@ const Carousel: FC = () => {
         <Swiper
           style={
             {
-              "--swiper-navigation-color": "#fff",
-              "--swiper-pagination-color": "#fff",
+              "--swiper-navigation-color": "var(--color-text-inverse)",
+              "--swiper-pagination-color": "var(--color-text-inverse)",
             } as React.CSSProperties
           }
           navigation
           modules={[Navigation, Pagination, Autoplay]}
           className="w-[100%] "
           autoplay={{
-            delay: 2000,
+            delay: 4000,
           }}
           loop
           onSwiper={(swiper) => {
@@ -49,7 +51,7 @@ const Carousel: FC = () => {
           <SwiperSlide>
             <div>
               <img
-                src={img1}
+                src={img2}
                 alt=""
                 className="w-[100%] h-[100%] rounded-[10px]"
               />
@@ -58,7 +60,7 @@ const Carousel: FC = () => {
           <SwiperSlide>
             <div>
               <img
-                src={img1}
+                src={img3}
                 alt=""
                 className="w-[100%] h-[100%] rounded-[10px]"
               />
@@ -79,9 +81,10 @@ const Carousel: FC = () => {
           {[...Array(4)].map((_, index) => (
             <span
               key={index}
-              className={`w-8 h-[4px] transition-all duration-300 ${
-                index === activeIndex ? "bg-white" : "bg-[#C2C0C1]"
-              }`}
+              className="w-8 h-[4px] transition-all duration-300"
+              style={{
+                backgroundColor: index === activeIndex ? 'var(--color-text-inverse)' : 'var(--color-text-secondary)'
+              }}
               onClick={() => {
                 swiper.slideTo(index);
               }}
@@ -95,7 +98,7 @@ const Carousel: FC = () => {
         slidesPerView={4}
         modules={[Autoplay]}
         autoplay={{
-          delay: 1000,
+          delay: 4000,
         }}
       >
         <SwiperSlide>
@@ -120,7 +123,21 @@ const Carousel: FC = () => {
             }}
           >
             <img
-              src={img1}
+              src={img2}
+              alt=""
+              className="object-cover w-[100%] rounded-[10px] h-[100%]"
+            />
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div
+            className="w-[100%] mb-2"
+            style={{
+              height: "calc(550px / 4 - 15px)",
+            }}
+          >
+            <img
+              src={img3}
               alt=""
               className="object-cover w-[100%] rounded-[10px] h-[100%]"
             />
@@ -148,7 +165,7 @@ const Carousel: FC = () => {
             }}
           >
             <img
-              src={img1}
+              src={img2}
               alt=""
               className="object-cover w-[100%] rounded-[10px] h-[100%]"
             />
@@ -162,21 +179,7 @@ const Carousel: FC = () => {
             }}
           >
             <img
-              src={img1}
-              alt=""
-              className="object-cover w-[100%] rounded-[10px] h-[100%]"
-            />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div
-            className="w-[100%] mb-2"
-            style={{
-              height: "calc(550px / 4 - 15px)",
-            }}
-          >
-            <img
-              src={img1}
+              src={img3}
               alt=""
               className="object-cover w-[100%] rounded-[10px] h-[100%]"
             />

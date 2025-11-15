@@ -15,6 +15,6 @@ export default defineConfig({
     host: "0.0.0.0", // Allows access from external networks (e.g., ngrok)
     port: 5173, // Make sure this matches your ngrok command
     strictPort: true, // Ensures the port is not changed
-    allowedHosts: ["f99d-119-235-120-198.ngrok-free.app"],
+    allowedHosts: ["020a-119-235-120-198.ngrok-free.app"],
   },
 });

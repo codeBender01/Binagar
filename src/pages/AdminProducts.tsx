@@ -188,7 +188,8 @@ const ProductsList: FC = () => {
                 });
                 setFileList(fList);
               }}
-              className="text-[#FDDA0D] cursor-pointer hover:opacity-80 duration-200"
+              style={{ color: 'var(--color-warning)' }}
+              className="cursor-pointer hover:opacity-80 duration-200"
             >
               <LuImagePlus size={22} />
             </div>
@@ -212,7 +213,7 @@ const ProductsList: FC = () => {
       <div
         className="mt-[40px] px-4 py-2 rounded-[20px] "
         style={{
-          boxShadow: "0px 0px 0px 0.5px #00000008, 0px 5px 22px 0px #0000000A",
+          boxShadow: "var(--shadow-card)",
         }}
       >
         <div className="my-[24px] flex justify-between items-center">

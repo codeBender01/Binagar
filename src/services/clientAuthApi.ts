@@ -3,6 +3,7 @@ import {
   PhoneLogin,
   EmailLogin,
   Verification,
+  AuthResponseType,
 } from "../interfaces/auth.interface";
 import { ApiResponse } from "../interfaces/apiResponse.interface";
 
@@ -21,13 +22,15 @@ export const clientAuthApi = createApi({
         }),
       }
     ),
-    clientVerify: builder.mutation<ApiResponse<any>, Verification>({
-      query: (obj) => ({
-        url: "/auth/verify",
-        body: obj,
-        method: "POST",
-      }),
-    }),
+    clientVerify: builder.mutation<ApiResponse<AuthResponseType>, Verification>(
+      {
+        query: (obj) => ({
+          url: "/auth/verify",
+          body: obj,
+          method: "POST",
+        }),
+      }
+    ),
   }),
 });
 

@@ -2,7 +2,6 @@ import { FC } from "react";
 
 import Carousel from "../components/Carousel";
 import BrandBox from "../components/BrandBox";
-import ProductCarousel from "../components/ProductCarousel";
 
 const Brands: FC = () => {
   return (
@@ -18,7 +17,7 @@ const Brands: FC = () => {
         <BrandBox />
         <BrandBox />
       </div>
-      <div className="mt-[28px] flex justify-between font-main font-bold text-lg">
+      {/* <div className="mt-[28px] flex justify-between font-main font-bold text-lg">
         <div>Brand name</div>
         <div>view all</div>
       </div>
@@ -37,7 +36,7 @@ const Brands: FC = () => {
         <div>Brand name</div>
         <div>view all</div>
       </div>
-      <ProductCarousel />
+      <ProductCarousel /> */}
     </div>
   );
 };

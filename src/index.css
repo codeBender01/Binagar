@@ -1,4 +1,4 @@
-@import "tailwindcss" important;
+@import "tailwindcss";
 
 @font-face {
   font-family: "Mont";
@@ -16,43 +16,150 @@
   --font-main: Mont, sans-serif;
   --font-geo: Geo, sans-serif;
   --font-serif: serif;
+
   --text-sm2: 12px;
   --text-sm: 14px;
   --text-lg: 22px;
   --text-md: 18px;
-  --color-mainBlue: #00496e;
-  --color-textBlack: #262323;
-  --color-borderGray: #eae9e9;
-  --color-background: #f3f4f6;
-  --color-red: #ff0000;
-  --color-gray: #9ca3af;
-  --color-lightblue: #23a9ec;
-  --color-gray2: #4b5563;
-  --color-gray3: #929090;
-  --color-mainBlack: #1c2536;
-  --color-secondaryBlack: #111927;
-  --color-altBlack: #2f3746;
-  --color-textGray: #6c737f;
-  --color-secondaryGray: #9da4ae;
-  --color-purple: #6366f1;
-  --color-activeTabGray: #252e3e;
-  --color-bgGray: #e5e7eb;
-  --color-secBlackOp: #1119271f;
-  --color-deleteRed: #c8102e;
-  --color-green: #0b815a;
-  --color-lightGreen: #e2f7f0;
-  --color-paleGray: #fafbfb;
-  --color-yellow: #b54708;
-  --color-lightYellow: #fef2e1;
-  --color-blue: #0e7090;
-  --color-lightBlue: #d8edf2;
-  --color-lightRed: #fef3f2;
 
   --breakpoint-lg2: 72rem;
   --breakpoint-md2: 56rem;
+
+  /* Background Colors */
+  --color-background: #f4f4f4;
+  --color-appBarColor: #ffffff;
+  --color-cardBg: #ffffff;
+  --color-modalBg: #ffffff;
+
+  /* Brand Colors */
+  --color-primary: #1b995b;
+  --color-secondary: #c01a2a;
+  --color-mainBlue: #1e40af;
+
+  /* Text Colors */
+  --color-text-primary: #202123;
+  --color-text-secondary: #6b7280;
+  --color-text-muted: #929090;
+  --color-text-inverse: #ffffff;
+  --color-gray: #6b7280;
+  --color-gray2: #4b5563;
+  --color-gray3: #9ca3af;
+
+  /* Border Colors */
+  --color-borderGray: #e5e7eb;
+  --color-border: #d1d5db;
+  --color-borderLight: #e5e7eb;
+
+  /* UI Element Colors */
+  --color-activeTabGray: #6b7280;
+  --color-iconGray: #929090;
+  --color-tableBg: #f8f9fa;
+  --color-sidebarActive: #f3f4f6;
+  --color-warning: #FDDA0D;
+
+  /* Button Colors */
+  --color-buttonPrimary: #6366f1;
+  --color-buttonPrimaryHover: #4f46e5;
+  --color-buttonSecondary: #35269b;
+  --color-buttonSecondaryHover: #2d1f82;
+
+  /* Shadow Colors */
+  --shadow-sm: rgba(0, 0, 0, 0.05);
+  --shadow-md: rgba(0, 0, 0, 0.1);
+  --shadow-lg: rgba(0, 0, 0, 0.15);
+  --shadow-colored: rgba(50, 50, 93, 0.25);
+  --shadow-card: 0px 0px 0px 0.5px rgba(0, 0, 0, 0.03), 0px 5px 22px 0px rgba(0, 0, 0, 0.04);
+  --shadow-brand: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+
+  --animate-spin-slow: spin-slow 3s linear infinite;
 }
 
-/* get the styles for both icon*/
+.dark {
+  /* Background Colors */
+  --color-background: #1e1e1e;
+  --color-appBarColor: #2d2d2d;
+  --color-cardBg: #2d2d2d;
+  --color-modalBg: #2d2d2d;
+
+  /* Brand Colors - adjusted for dark mode */
+  --color-primary: #22c55e;
+  --color-secondary: #ef4444;
+  --color-mainBlue: #60a5fa;
+
+  /* Text Colors */
+  --color-text-primary: #e5e7eb;
+  --color-text-secondary: #9ca3af;
+  --color-text-muted: #6b7280;
+  --color-text-inverse: #1f2937;
+  --color-gray: #9ca3af;
+  --color-gray2: #d1d5db;
+  --color-gray3: #6b7280;
+
+  /* Border Colors */
+  --color-borderGray: #404040;
+  --color-border: #404040;
+  --color-borderLight: #525252;
+
+  /* UI Element Colors */
+  --color-activeTabGray: #525252;
+  --color-iconGray: #9ca3af;
+  --color-tableBg: #374151;
+  --color-sidebarActive: #374151;
+  --color-warning: #fbbf24;
+
+  /* Button Colors */
+  --color-buttonPrimary: #818cf8;
+  --color-buttonPrimaryHover: #6366f1;
+  --color-buttonSecondary: #4f46e5;
+  --color-buttonSecondaryHover: #6366f1;
+
+  /* Shadow Colors */
+  --shadow-sm: rgba(0, 0, 0, 0.3);
+  --shadow-md: rgba(0, 0, 0, 0.4);
+  --shadow-lg: rgba(0, 0, 0, 0.5);
+  --shadow-colored: rgba(0, 0, 0, 0.5);
+  --shadow-card: 0px 0px 0px 0.5px rgba(255, 255, 255, 0.05), 0px 5px 22px 0px rgba(0, 0, 0, 0.3);
+  --shadow-brand: rgba(255, 255, 255, 0.05) 0px 1px 1px 0px inset, rgba(0, 0, 0, 0.5) 0px 50px 100px -20px, rgba(0, 0, 0, 0.6) 0px 30px 60px -30px;
+}
+
+body {
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+}
+
+* {
+  transition-property: background-color, border-color, color;
+  transition-duration: 200ms;
+  transition-timing-function: ease-in-out;
+}
+
+/* Custom animations */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 3s linear infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
 
 .icon,
 .icon:before,

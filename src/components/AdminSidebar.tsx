@@ -135,7 +135,7 @@ const AdminSidebar: FC = () => {
           }}
           className={`${
             location.pathname.includes("/admin/analytics")
-              ? "text-white bg-[#252e3e]"
+              ? "text-white bg-sidebarActive"
               : "text-secondaryGray"
           } flex items-center px-2 text-sm font-semibold gap-2 font-main cursor-pointer hover:bg-activeTabGray duration-800 rounded-md py-2`}
         >
@@ -148,7 +148,7 @@ const AdminSidebar: FC = () => {
           }}
           className={`${
             location.pathname.includes("/admin/e-commerce")
-              ? "text-white bg-[#252e3e]"
+              ? "text-white bg-sidebarActive"
               : "text-secondaryGray"
           } flex items-center px-2 text-sm font-semibold gap-2 font-main cursor-pointer hover:bg-activeTabGray duration-800 rounded-md py-2`}
         >

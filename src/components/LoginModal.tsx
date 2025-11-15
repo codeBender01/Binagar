@@ -19,20 +19,34 @@ const LoginModal: FC<LoginModalProps> = ({ open, setOpen }) => {
 
   const [activeTab, setActiveTab] = useState("phone");
   const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [loginType, setLoginType] = useState("phone");
   const [countdown, setCountdown] = useState(60);
   const [verificationNumber, setVerificationNumber] = useState<number | null>(
     null
   );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const numericValue = e.target.value.replace(/\D/g, "");
-    setPhone(numericValue);
+    if (loginType === "phone") {
+      const numericValue = e.target.value.replace(/\D/g, "");
+      setPhone(numericValue);
+    } else {
+      setEmail(e.target.value);
+    }
   };
 
   const handleLogin = async () => {
-    const res = await login({ phoneNumber: "+993" + phone });
-    if (res.data) {
-      setActiveTab("verify");
+    if (countdown === 0) setCountdown(60);
+    if (loginType === "phone") {
+      const res = await login({ phoneNumber: "+993" + phone });
+      if (res.data) {
+        setActiveTab("verify");
+      }
+    } else {
+      const res = await login({ email: email });
+      if (res.data) {
+        setActiveTab("verify");
+      }
     }
   };
 
@@ -43,8 +57,10 @@ const LoginModal: FC<LoginModalProps> = ({ open, setOpen }) => {
     });
 
     if (res.data) {
-      message.success("Success");
+      message.success("Üstünlikli!");
       setOpen(false);
+    } else {
+      message.error("Ýalňyşlyk ýüze çykdy!");
     }
   };
 
@@ -59,24 +75,51 @@ const LoginModal: FC<LoginModalProps> = ({ open, setOpen }) => {
   }, [countdown, activeTab]);
 
   return (
-    <Modal open={open} footer={null} onCancel={() => setOpen(false)}>
-      <div className="flex flex-col items-center gap-4">
+    <Modal
+      open={open}
+      footer={null}
+      onCancel={() => setOpen(false)}
+      styles={{
+        content: {
+          backgroundColor: "var(--color-modalBg)",
+          color: "var(--color-text-primary)",
+        },
+        header: {
+          backgroundColor: "var(--color-modalBg)",
+          color: "var(--color-text-primary)",
+        },
+      }}
+    >
+      <div
+        className="flex flex-col items-center gap-4"
+        style={{ color: "var(--color-text-primary)" }}
+      >
         {activeTab !== "verify" ? (
           <div className="flex gap-4 items-center font-geo text-2xl">
             <span
               onClick={() => setActiveTab("phone")}
               className={`${
-                activeTab === "phone" ? "bg-mainBlue text-white" : ""
-              } hover:bg-mainBlue hover:text-white duration-200 cursor-pointer p-2 rounded-2xl`}
+                activeTab === "phone" ? "bg-primary text-white" : ""
+              } hover:bg-primary hover:text-white duration-200 cursor-pointer p-2 rounded-2xl`}
+              style={
+                activeTab !== "phone"
+                  ? { color: "var(--color-text-primary)" }
+                  : {}
+              }
             >
               Telefon
             </span>
-            <span>|</span>
+            <span style={{ color: "var(--color-text-primary)" }}>|</span>
             <span
               onClick={() => setActiveTab("email")}
               className={`${
-                activeTab === "email" ? "bg-mainBlue text-white" : ""
-              } hover:bg-mainBlue hover:text-white duration-200 cursor-pointer p-2 rounded-2xl`}
+                activeTab === "email" ? "bg-primary text-white" : ""
+              } hover:bg-primary hover:text-white duration-200 cursor-pointer p-2 rounded-2xl`}
+              style={
+                activeTab !== "email"
+                  ? { color: "var(--color-text-primary)" }
+                  : {}
+              }
             >
               Email
             </span>
@@ -90,16 +133,36 @@ const LoginModal: FC<LoginModalProps> = ({ open, setOpen }) => {
             <div className="text-[16px] font-main">
               Telefon belgiňizi giriziň
             </div>
-            <div className="flex items-center border-[1px] rounded-[10px] font-geo w-[80%]">
-              <div className="border-r-[1px] h-[100%] p-2">+993</div>
+            <div
+              className="flex items-center border-[1px] rounded-[10px] font-geo w-[80%]"
+              style={{
+                borderColor: "var(--color-borderGray)",
+                color: "var(--color-text-primary)",
+              }}
+            >
+              <div
+                className="border-r-[1px] h-[100%] p-2"
+                style={{ borderColor: "var(--color-borderGray)" }}
+              >
+                +993
+              </div>
               <Input
-                onChange={handleChange}
+                onChange={(e) => {
+                  setLoginType("phone");
+                  handleChange(e);
+                }}
                 maxLength={8}
                 inputMode="numeric"
                 pattern="[0-9]*"
                 value={phone}
                 type="tel"
-                className="border-none"
+                className="border-none outline-none"
+                style={{
+                  backgroundColor: "var(--color-modalBg)",
+                  color: "var(--color-text-primary)",
+                  boxShadow: "none",
+                  outline: "none",
+                }}
               />
             </div>
           </>
@@ -108,8 +171,20 @@ const LoginModal: FC<LoginModalProps> = ({ open, setOpen }) => {
           <>
             <div className="text-[16px] font-main">Email salgyňyzy giriziň</div>
             <Input
+              onChange={(e) => {
+                setLoginType("email");
+                handleChange(e);
+              }}
               placeholder="meselem@gmail.com"
-              className="p-2 w-[80%] rounded-[10px] border-[#202123]"
+              className="!w-[80%] rounded-[10px] outline-none"
+              style={{
+                borderColor: "var(--color-borderGray)",
+                backgroundColor: "var(--color-modalBg)",
+                color: "var(--color-text-primary)",
+                boxShadow: "none",
+                outline: "none",
+                padding: "8px 11px",
+              }}
               type="email"
             />
           </>
@@ -118,7 +193,15 @@ const LoginModal: FC<LoginModalProps> = ({ open, setOpen }) => {
         {activeTab === "verify" && (
           <>
             <Input
-              className="p-2 w-[80%] rounded-[10px] border-[#202123]"
+              className="w-[80%] rounded-[10px] outline-none"
+              style={{
+                borderColor: "var(--color-borderGray)",
+                backgroundColor: "var(--color-modalBg)",
+                color: "var(--color-text-primary)",
+                boxShadow: "none",
+                outline: "none",
+                padding: "8px 11px",
+              }}
               maxLength={8}
               inputMode="numeric"
               pattern="[0-9]*"
@@ -132,14 +215,22 @@ const LoginModal: FC<LoginModalProps> = ({ open, setOpen }) => {
             />
 
             <div className="font-geo text-[18px]">{formatTime(countdown)}</div>
+            {countdown === 0 && (
+              <div
+                onClick={handleLogin}
+                className="font-main underline text-blue-400 cursor-pointer hover:opacity-75 duration-150"
+              >
+                SMS täzeden ugrat
+              </div>
+            )}
           </>
         )}
 
         <Button
           onClick={activeTab === "verify" ? handleVerify : handleLogin}
-          className="bg-mainBlue text-white text-[16px] font-geo h-[40px]"
+          className="!bg-primary !text-white hover:border-primary text-[16px] !font-geo h-[40px]"
         >
-          {activeTab === "verify" ? "Ugrat" : "Tassyklama kody ugrat"}
+          {activeTab === "verify" ? "Tassykla" : "Tassyklama kody ugrat"}
         </Button>
       </div>
     </Modal>

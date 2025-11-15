@@ -1,4 +1,4 @@
-import { useRoutes } from "react-router-dom";
+import { useRoutes, Navigate } from "react-router-dom";
 
 import { Suspense, lazy } from "react";
 
@@ -12,36 +12,48 @@ const Brands = lazy(() => import("../pages/Brands"));
 const AdminLogin = lazy(() => import("../pages/AdminLogin"));
 const AdminProducts = lazy(() => import("../pages/AdminProducts"));
 const AdminCategories = lazy(() => import("../pages/AdminCategories"));
+const Services = lazy(() => import("../pages/Services"));
 
 export default function Router() {
   const routes = useRoutes([
+    {
+      path: "/",
+      element: <Navigate to="/home/products" replace />,
+    },
     {
       element: (
         <Suspense fallback={<div>loading</div>}>
           <ClientLayout />
         </Suspense>
       ),
-      path: "/",
+      path: "/home",
       children: [
         {
-          element: <Home />,
           path: "",
+          element: <Navigate to="/home/products" replace />,
+        },
+        {
+          element: <Home />,
+          path: "products",
         },
         {
           element: <Product />,
-          path: "/product",
+          path: "product",
         },
         {
           element: <Basket />,
-          path: "/basket",
+          path: "basket",
         },
         {
           element: <Brands />,
-          path: "/brands",
+          path: "brands",
+        },
+        {
+          element: <Services />,
+          path: "services",
         },
       ],
     },
-
     {
       element: <AdminLogin />,
       path: "/admin-login",

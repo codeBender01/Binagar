@@ -1,84 +1,34 @@
 import { FC } from "react";
-import { useNavigate } from "react-router-dom";
 
 import turner from "../assets/whiting-turner-logo-vector.png";
-import skanska from "../assets/Skanska-Logo.wine.png";
-import bou from "../assets/Bouygues-Logo.wine.png";
-import fluor from "../assets/Fluor-logo-square.webp";
-import kiewit from "../assets/Kiewit-Logo-wPKS-768x432.png";
+import { Brand } from "../interfaces/brands.interface";
 
-const BrandsList: FC = () => {
-  const navigate = useNavigate();
+interface BrandsListProps {
+  brands: Brand[];
+}
+
+const BrandsList: FC<BrandsListProps> = ({ brands }) => {
   return (
-    <div className=" mb-2 flex flex-wrap gap-2 lg:gap-0">
-      <div
-        onClick={() => navigate("/brands")}
-        className="flex flex-col items-center  w-[48%] sm:w-[32%] md:w-[19%] lg:w-[10%] border-r-[1px] border-white bg-white text-white h-[105px] font-main text-[18px] justify-center gap-2 hover:opacity-95 hover:scale-110 duration-200"
-      >
-        <img src={turner} className="object-contain w-[100%] h-[100%]" alt="" />
-      </div>
-      <div
-        onClick={() => navigate("/brands")}
-        className="flex flex-col items-center  w-[48%] sm:w-[32%] md:w-[19%] lg:w-[10%] border-r-[1px] border-white bg-white text-white h-[105px] font-main text-[18px] justify-center gap-2 hover:opacity-95 hover:scale-110 duration-200"
-      >
-        <img
-          src={skanska}
-          className="object-contain w-[100%] h-[100%]"
-          alt=""
-        />
-      </div>
-      <div
-        onClick={() => navigate("/brands")}
-        className="flex flex-col items-center  w-[48%] sm:w-[32%] md:w-[19%] lg:w-[10%] border-r-[1px] border-white bg-white text-white h-[105px] font-main text-[18px] justify-center gap-2 hover:opacity-95 hover:scale-110 duration-200"
-      >
-        <img src={bou} className="object-contain w-[100%] h-[100%]" alt="" />
-      </div>
-      <div
-        onClick={() => navigate("/brands")}
-        className="flex flex-col items-center  w-[48%] sm:w-[32%] md:w-[19%] lg:w-[10%] border-r-[1px] border-white bg-white text-white h-[105px] font-main text-[18px] justify-center gap-2 hover:opacity-95 hover:scale-110 duration-200"
-      >
-        <img src={fluor} className="object-contain w-[100%] h-[100%]" alt="" />
-      </div>
-      <div
-        onClick={() => navigate("/brands")}
-        className="flex flex-col items-center  w-[48%] sm:w-[32%] md:w-[19%] lg:w-[10%] border-r-[1px] border-white bg-white text-white h-[105px] font-main text-[18px] justify-center gap-2 hover:opacity-95 hover:scale-110 duration-200"
-      >
-        <img src={kiewit} className="object-contain w-[100%] h-[100%]" alt="" />
-      </div>
-      <div
-        onClick={() => navigate("/brands")}
-        className="flex flex-col items-center  w-[48%] sm:w-[32%] md:w-[19%] lg:w-[10%] border-r-[1px] border-white bg-white text-white h-[105px] font-main text-[18px] justify-center gap-2 hover:opacity-95 hover:scale-110 duration-200"
-      >
-        <img src={turner} className="object-contain w-[100%] h-[100%]" alt="" />
-      </div>
-      <div
-        onClick={() => navigate("/brands")}
-        className="flex flex-col items-center  w-[48%] sm:w-[32%] md:w-[19%] lg:w-[10%] border-r-[1px] border-white bg-white text-white h-[105px] font-main text-[18px] justify-center gap-2 hover:opacity-95 hover:scale-110 duration-200"
-      >
-        <img
-          src={skanska}
-          className="object-contain w-[100%] h-[100%]"
-          alt=""
-        />
-      </div>
-      <div
-        onClick={() => navigate("/brands")}
-        className="flex flex-col items-center  w-[48%] sm:w-[32%] md:w-[19%] lg:w-[10%] border-r-[1px] border-white bg-white text-white h-[105px] font-main text-[18px] justify-center gap-2 hover:opacity-95 hover:scale-110 duration-200"
-      >
-        <img src={bou} className="object-contain w-[100%] h-[100%]" alt="" />
-      </div>
-      <div
-        onClick={() => navigate("/brands")}
-        className="flex flex-col items-center  w-[48%] sm:w-[32%] md:w-[19%] lg:w-[10%] border-r-[1px] border-white bg-white text-white h-[105px] font-main text-[18px] justify-center gap-2 hover:opacity-95 hover:scale-110 duration-200"
-      >
-        <img src={fluor} className="object-contain w-[100%] h-[100%]" alt="" />
-      </div>
-      <div
-        onClick={() => navigate("/brands")}
-        className="flex flex-col items-center mx-0 sm:mx-auto w-[48%] sm:w-[32%] md:w-[19%] lg:w-[10%] border-r-[1px] border-white bg-white text-white h-[105px] font-main text-[18px] justify-center gap-2 hover:opacity-95 hover:scale-110 duration-200"
-      >
-        <img src={kiewit} className="object-contain w-[100%] h-[100%]" alt="" />
-      </div>
+    <div className="mb-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
+      {brands.map((b) => {
+        return (
+          <div
+            key={b.id}
+            className="flex flex-col items-center border border-borderGray h-[105px] font-main text-sm rounded-lg justify-center gap-2 hover:opacity-95 hover:scale-110 duration-200 cursor-pointer"
+            style={{ color: 'var(--color-text-primary)' }}
+          >
+            <div className="bg-gray-300 h-[80px] w-[80px]">
+              <img
+                src={turner}
+                className="object-contain w-[100%] h-[100%]"
+                alt=""
+              />
+            </div>
+
+            <div className="text-center line-clamp-1" style={{ color: 'inherit' }}>{b.name}</div>
+          </div>
+        );
+      })}
     </div>
   );
 };

@@ -1,7 +1,6 @@
 import { FC } from "react";
 
 import { Button } from "antd";
-import ProductCarousel from "../components/ProductCarousel";
 
 import drill from "../assets/drill.png";
 
@@ -14,12 +13,12 @@ const Product: FC = () => {
         <span className="text-gray">Home</span> /{" "}
         <span className="text-gray">Category</span> / Product
       </div>
-      <div className="text-[32px] md:text-[48px] md2:mb-4 text-textBlack font-bold font-geo">
+      <div className="text-[32px] md:text-[48px] md2:mb-4 font-bold font-geo" style={{ color: 'var(--color-text-primary)' }}>
         Product title
       </div>
 
       <div className="flex flex-col gap-4 md2:flex-row md2:gap-0 md2:justify-between items-center">
-        <div className="h-[500px] md2:h-[550px] w-[100%] md2:w-[45%] lg:w-[55%] bg-white rounded-[4px]">
+        <div className="h-[500px] md2:h-[550px] w-[100%] md2:w-[45%] lg:w-[55%] bg-cardBg rounded-[4px]">
           <img
             src={drill}
             alt=""
@@ -27,7 +26,7 @@ const Product: FC = () => {
           />
         </div>
 
-        <div className="w-[100%] md2:w-[50%] lg:w-[40%] bg-white rounded-3xl p-7 flex flex-col">
+        <div className="w-[100%] md2:w-[50%] lg:w-[40%] bg-cardBg rounded-3xl p-7 flex flex-col">
           <div className="font-geo text-[20px] font-medium">Umumy maglumat</div>
           <ul className="font-geo flex flex-col gap-[12px] mt-1.5">
             <li className="flex justify-between gap-2 items-center">
@@ -66,11 +65,11 @@ const Product: FC = () => {
         </div>
       </div>
 
-      <div className="mt-8 text-[24px] text-textBlack font-bold font-geo">
+      <div className="mt-8 text-[24px] font-bold font-geo" style={{ color: 'var(--color-text-primary)' }}>
         Meňzeş harytlar
       </div>
 
-      <ProductCarousel />
+      {/* <ProductCarousel /> */}
     </div>
   );
 };

@@ -15,9 +15,11 @@ const AnimatedButton: FC = () => {
         e.stopPropagation();
         setIsClicked(true);
       }}
-      className={`cart-button ${isClicked ? "clicked" : ""}`}
+      className={`cart-button bg-primary font-main ${
+        isClicked ? "clicked" : ""
+      }`}
     >
-      <span className="add-to-cart">Harydy goşmak</span>
+      <span className="add-to-cart ">Harydy goşmak</span>
       <span className="added">Goşuldy</span>
       <div className="fas fa-shopping-cart">
         <IoMdCart />

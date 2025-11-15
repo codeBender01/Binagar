@@ -5,16 +5,15 @@
   height: 36px;
   border: 0;
   border-radius: 8px;
-  background-color: #23a9ec;
   outline: none;
   cursor: pointer;
-  color: #fff;
+  color: #ffffff !important;
   transition: 0.3s ease-in-out;
   overflow: hidden;
   font-size: 12px;
 }
 .cart-button:hover {
-  background-color: #35269b;
+  opacity: 0.9;
 }
 .cart-button:active {
   transform: scale(0.9);
@@ -42,7 +41,7 @@
   left: 50%;
   top: 50%;
   font-size: 1.2em;
-  color: #fff;
+  color: #ffffff;
   width: 100%;
   transform: translate(-50%, -50%);
 }

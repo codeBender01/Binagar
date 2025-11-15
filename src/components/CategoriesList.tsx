@@ -1,71 +1,44 @@
 import { FC } from "react";
 
-import { FaScrewdriver } from "react-icons/fa";
-import { MdOutlineConstruction, MdOutlinePlumbing } from "react-icons/md";
-import { BsBricks } from "react-icons/bs";
+import { Category } from "../interfaces/categories.interface";
+import { BiCategory } from "react-icons/bi";
 
-const CategoriesList: FC = () => {
+export interface CategoriesListProps {
+  categories: Category[];
+}
+
+const CategoriesList: FC<CategoriesListProps> = ({ categories }) => {
   return (
-    <div className=" mb-2 flex flex-wrap gap-2 lg:gap-0">
-      <div className="flex flex-col items-center w-[48%] sm:w-[32%] md:w-[19%] lg:w-[10%] border-r-[1px] border-white bg-mainBlue text-white h-[105px] font-main text-[18px] justify-center gap-2 hover:opacity-95 hover:scale-110 duration-200">
-        <div>
-          <FaScrewdriver size={32} />
+    <div className="mb-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
+      {categories.map((c) => {
+        return (
+          <div
+            key={c.id}
+            className="flex flex-col items-center border border-borderGray h-[105px] font-main text-sm rounded-lg justify-center gap-2 hover:opacity-95 hover:scale-110 duration-200 cursor-pointer"
+            style={{ color: 'var(--color-text-primary)' }}
+          >
+            {c.imageUrl ? (
+              <div className="bg-gray-300 h-[40px] w-[40px]">
+                <img src={c.imageUrl} alt="" />
+              </div>
+            ) : (
+              <div className="bg-primary text-white p-3 rounded-lg">
+                <BiCategory size={24} />
+              </div>
+            )}
+
+            <div className="text-center line-clamp-1" style={{ color: 'inherit' }}>{c.name.tm}</div>
+          </div>
+        );
+      })}
+
+      <div className="flex flex-col items-center border border-borderGray h-[105px] font-main text-sm rounded-lg justify-center gap-2 hover:opacity-95 hover:scale-110 duration-200 cursor-pointer"
+        style={{ color: 'var(--color-text-primary)' }}>
+        <div className="bg-primary text-white p-3 rounded-lg">
+          <BiCategory size={24} />
         </div>
-        <div>Gurallar</div>
-      </div>
-      <div className="flex flex-col items-center w-[48%] sm:w-[32%] md:w-[19%] lg:w-[10%] border-r-[1px] border-white h-[105px] bg-mainBlue text-white font-main text-[18px] hover:opacity-95 hover:scale-110 duration-200 cursor-pointer justify-center gap-2">
-        <div>
-          <MdOutlineConstruction size={32} />
-        </div>
-        <div>Gurluşyk</div>
-      </div>
-      <div className="flex flex-col items-center w-[48%] sm:w-[32%] md:w-[19%] lg:w-[10%] border-r-[1px] border-white h-[105px] bg-mainBlue text-white font-main text-[18px] hover:opacity-95 hover:scale-110 duration-200 cursor-pointer justify-center gap-2">
-        <div>
-          <MdOutlinePlumbing size={32} />
-        </div>
-        <div>Santehnika</div>
-      </div>
-      <div className="flex flex-col items-center w-[48%] sm:w-[32%] md:w-[19%] lg:w-[10%] border-r-[1px] border-white h-[105px] bg-mainBlue text-white font-main text-[18px] hover:opacity-95 hover:scale-110 duration-200 cursor-pointer justify-center gap-2">
-        <div>
-          <BsBricks size={32} />
-        </div>
-        <div>Lomaý</div>
-      </div>
-      <div className="flex flex-col items-center w-[48%] sm:w-[32%] md:w-[19%] lg:w-[10%] border-r-[1px] border-white bg-mainBlue text-white h-[105px] font-main text-[18px] hover:opacity-95 hover:scale-110 duration-200 cursor-pointer justify-center gap-2">
-        <div>
-          <FaScrewdriver size={32} />
-        </div>
-        <div>Gurallar</div>
-      </div>
-      <div className="flex flex-col items-center w-[48%] sm:w-[32%] md:w-[19%] lg:w-[10%] border-r-[1px] border-white h-[105px] bg-mainBlue text-white font-main text-[18px] hover:opacity-95 hover:scale-110 duration-200 cursor-pointer justify-center gap-2">
-        <div>
-          <MdOutlineConstruction size={32} />
-        </div>
-        <div>Gurluşyk</div>
-      </div>
-      <div className="flex flex-col items-center w-[48%] sm:w-[32%] md:w-[19%] lg:w-[10%] border-r-[1px] border-white h-[105px] bg-mainBlue text-white font-main text-[18px] hover:opacity-95 hover:scale-110 duration-200 cursor-pointer justify-center gap-2">
-        <div>
-          <MdOutlinePlumbing size={32} />
-        </div>
-        <div>Santehnika</div>
-      </div>
-      <div className="flex flex-col items-center w-[48%] sm:w-[32%] md:w-[19%] lg:w-[10%] border-r-[1px] border-white h-[105px] bg-mainBlue text-white font-main text-[18px] hover:opacity-95 hover:scale-110 duration-200 cursor-pointer justify-center gap-2">
-        <div>
-          <BsBricks size={32} />
-        </div>
-        <div>Lomaý</div>
-      </div>
-      <div className="flex flex-col items-center w-[48%] sm:w-[32%] md:w-[19%] lg:w-[10%] border-r-[1px] border-white bg-mainBlue text-white h-[105px] font-main text-[18px] hover:opacity-95 hover:scale-110 duration-200 cursor-pointer justify-center gap-2">
-        <div>
-          <FaScrewdriver size={32} />
-        </div>
-        <div>Gurallar</div>
-      </div>
-      <div className="flex flex-col mx-0 sm:mx-auto items-center w-[48%] sm:w-[32%] md:w-[19%] lg:w-[10%] border-r-[1px] border-white h-[105px] bg-mainBlue text-white font-main text-[18px] hover:opacity-95 hover:scale-110 duration-200 cursor-pointer justify-center gap-2">
-        <div>
-          <MdOutlineConstruction size={32} />
-        </div>
-        <div>Gurluşyk</div>
+
+        <div className="text-center line-clamp-1" style={{ color: 'inherit' }}>Hemmesini görmek</div>
       </div>
     </div>
   );

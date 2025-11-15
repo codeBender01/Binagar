@@ -3,38 +3,45 @@ import { useNavigate } from "react-router-dom";
 
 import AnimatedButton from "./AnimatedButton";
 
-import drill from "../assets/drill.png";
-
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
+import { OneSeparateProduct } from "../interfaces/product.interface";
 
-const ProductCard: FC = () => {
+import drill from "../assets/drill.png";
+import blue from "../assets/blue.jpg";
+import { OneSeparateService } from "../interfaces/service.interface";
+
+interface ProductCardProps {
+  product: OneSeparateProduct | OneSeparateService;
+  isService: boolean;
+}
+
+const ProductCard: FC<ProductCardProps> = ({ product, isService }) => {
   const navigate = useNavigate();
 
   const [isFavoriteClicked, setIsFavoriteClicked] = useState(false);
   const [isFavoriteHovered, setIsFavoriteHovered] = useState(false);
   return (
     <div
-      className="min-w-[200px] w-[95%] border-[1px] border-borderGray p-[18px] rounded-[20px]"
+      className="min-w-[200px] w-[95%] border-[1px] border-gray-200 bg-appBarColor p-[18px] flex flex-col justify-between rounded-[20px]"
       onClick={() => navigate("/product")}
     >
-      <div className="w-[100%] h-[180px] bg-white rounded-[20px] relative">
+      <div className="w-[100%] h-[180px] bg-gray-300 rounded-[20px] relative">
         <img
-          src={drill}
+          src={isService ? blue : drill}
           alt="product"
           className="object-contain h-[100%] w-[100%] rounded-[4px]"
         />
-        <div className="absolute top-3 right-3 bg-red text-white text-sm2 rounded-full h-[40px] w-[40px] flex items-center justify-center font-main">
-          -50%
-        </div>
+
+        <div className="absolute top-3 right-3 bg-red text-white text-sm2 rounded-full h-[40px] w-[40px] flex items-center justify-center font-main"></div>
       </div>
 
-      <div className="mt-2 font-main font-semibold text-textBlack">
-        Product title
+      <div className="mt-2 font-main font-semibold" style={{ color: 'var(--color-text-primary)' }}>
+        {product.name_tm}
       </div>
-      <p className="text-sm font-main my-1">Lorem ipsum doller amet</p>
+      <p className="text-sm font-main my-1" style={{ color: 'var(--color-text-secondary)' }}>Lorem ipsum doller amet</p>
 
       <div className=" flex items-center gap-1">
-        <span className="text-textBlack font-main font-bold text-md">
+        <span className="font-main font-bold text-md" style={{ color: 'var(--color-text-primary)' }}>
           21.60 m.
         </span>
 
@@ -50,12 +57,12 @@ const ProductCard: FC = () => {
           onClick={() => setIsFavoriteClicked(!isFavoriteClicked)}
           onMouseEnter={() => setIsFavoriteHovered(true)}
           onMouseLeave={() => setIsFavoriteHovered(false)}
-          className="text-lightblue h-[36px] w-[36px] rounded-[6px] border-1 border-borderGray flex items-center justify-center hover:bg-white duration-200 cursor-pointer"
+          className="text-white hover:text-primary h-[36px] w-[36px] rounded-[6px] border-1 bg-primary border-gray-300 flex items-center justify-center hover:bg-white duration-200 cursor-pointer"
         >
           {isFavoriteClicked || isFavoriteHovered ? (
             <IoMdHeart size={24} />
           ) : (
-            <IoMdHeartEmpty size={24} stroke="#000" />
+            <IoMdHeartEmpty size={24} style={{ stroke: 'var(--color-text-primary)' }} />
           )}
         </div>
       </div>
