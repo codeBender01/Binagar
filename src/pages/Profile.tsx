@@ -10,7 +10,7 @@ import { IoMdInformationCircle } from "react-icons/io";
 import { IoExit } from "react-icons/io5";
 import { MdLightMode } from "react-icons/md";
 import { TbTruckDelivery } from "react-icons/tb";
-import { ReactNode } from "react";
+import { FC, ReactNode } from "react";
 
 const Profile = () => {
   const items1: ItemType[] = [

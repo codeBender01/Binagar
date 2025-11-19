@@ -49,19 +49,20 @@ const ProductCarousel: FC<ProductCarouselProps> = ({ products }) => {
               )}
             </div>
             <Swiper
-              slidesPerView={1}
+              slidesPerView={1.5}
+              spaceBetween={7}
+              loop
               breakpoints={{
+                600: {
+                  slidesPerView: 2.5,
+                },
+                768: {
+                  slidesPerView: 3.5,
+                },
                 1100: {
                   slidesPerView: 4,
                 },
-                768: {
-                  slidesPerView: 3,
-                },
-                500: {
-                  slidesPerView: 2,
-                },
               }}
-              loop
             >
               {items.map((item) => {
                 return (

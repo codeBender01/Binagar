@@ -55,7 +55,7 @@
   --color-iconGray: #929090;
   --color-tableBg: #f8f9fa;
   --color-sidebarActive: #f3f4f6;
-  --color-warning: #FDDA0D;
+  --color-warning: #fdda0d;
 
   /* Button Colors */
   --color-buttonPrimary: #6366f1;
@@ -68,8 +68,11 @@
   --shadow-md: rgba(0, 0, 0, 0.1);
   --shadow-lg: rgba(0, 0, 0, 0.15);
   --shadow-colored: rgba(50, 50, 93, 0.25);
-  --shadow-card: 0px 0px 0px 0.5px rgba(0, 0, 0, 0.03), 0px 5px 22px 0px rgba(0, 0, 0, 0.04);
-  --shadow-brand: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  --shadow-card: 0px 0px 0px 0.5px rgba(0, 0, 0, 0.03),
+    0px 5px 22px 0px rgba(0, 0, 0, 0.04);
+  --shadow-brand: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
+    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 
   --animate-spin-slow: spin-slow 3s linear infinite;
 }
@@ -77,7 +80,7 @@
 .dark {
   /* Background Colors */
   --color-background: #1e1e1e;
-  --color-appBarColor: #2d2d2d;
+  --color-appBarColor: #3a3a3a;
   --color-cardBg: #2d2d2d;
   --color-modalBg: #2d2d2d;
 
@@ -118,8 +121,11 @@
   --shadow-md: rgba(0, 0, 0, 0.4);
   --shadow-lg: rgba(0, 0, 0, 0.5);
   --shadow-colored: rgba(0, 0, 0, 0.5);
-  --shadow-card: 0px 0px 0px 0.5px rgba(255, 255, 255, 0.05), 0px 5px 22px 0px rgba(0, 0, 0, 0.3);
-  --shadow-brand: rgba(255, 255, 255, 0.05) 0px 1px 1px 0px inset, rgba(0, 0, 0, 0.5) 0px 50px 100px -20px, rgba(0, 0, 0, 0.6) 0px 30px 60px -30px;
+  --shadow-card: 0px 0px 0px 0.5px rgba(255, 255, 255, 0.05),
+    0px 5px 22px 0px rgba(0, 0, 0, 0.3);
+  --shadow-brand: rgba(255, 255, 255, 0.05) 0px 1px 1px 0px inset,
+    rgba(0, 0, 0, 0.5) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.6) 0px 30px 60px -30px;
 }
 
 body {

@@ -12,17 +12,9 @@ import gPlay from "../assets/googleplay.CUq9iiJj.png";
 import appStore from "../assets/appstore.BzQ4lsL6.png";
 import apk from "../assets/apk.9ZYehQS_.png";
 
-const checkPath = () => {
-  return window.location.href.includes("profile");
-};
-
 const Footer: FC = () => {
   return (
-    <footer
-      className={`${
-        checkPath() && "hidden"
-      } bg-appBarColor mt-[60px] pt-[50px]`}
-    >
+    <footer className={`hidden lg:inline bg-appBarColor mt-[60px] pt-[50px]`}>
       <div
         className="w-[90%] mx-auto py-[20px] flex flex-col gap-4 items-center"
         style={{ color: "var(--color-text-primary)" }}

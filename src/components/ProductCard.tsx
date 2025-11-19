@@ -22,7 +22,7 @@ const ProductCard: FC<ProductCardProps> = ({ product, isService }) => {
   const [isFavoriteHovered, setIsFavoriteHovered] = useState(false);
   return (
     <div
-      className="min-w-[200px] w-[95%] border-[1px] border-gray-200 bg-appBarColor p-[18px] flex flex-col justify-between rounded-[20px]"
+      className="min-w-[200px] w-[97%] bg-appBarColor p-[18px] flex flex-col justify-between rounded-[20px]"
       onClick={() => navigate("/product")}
     >
       <div className="w-[100%] h-[180px] bg-gray-300 rounded-[20px] relative">
@@ -35,13 +35,24 @@ const ProductCard: FC<ProductCardProps> = ({ product, isService }) => {
         <div className="absolute top-3 right-3 bg-red text-white text-sm2 rounded-full h-[40px] w-[40px] flex items-center justify-center font-main"></div>
       </div>
 
-      <div className="mt-2 font-main font-semibold" style={{ color: 'var(--color-text-primary)' }}>
+      <div
+        className="mt-2 font-main font-semibold"
+        style={{ color: "var(--color-text-primary)" }}
+      >
         {product.name_tm}
       </div>
-      <p className="text-sm font-main my-1" style={{ color: 'var(--color-text-secondary)' }}>Lorem ipsum doller amet</p>
+      <p
+        className="text-sm font-main my-1"
+        style={{ color: "var(--color-text-secondary)" }}
+      >
+        Lorem ipsum doller amet
+      </p>
 
       <div className=" flex items-center gap-1">
-        <span className="font-main font-bold text-md" style={{ color: 'var(--color-text-primary)' }}>
+        <span
+          className="font-main font-bold text-md"
+          style={{ color: "var(--color-text-primary)" }}
+        >
           21.60 m.
         </span>
 
@@ -57,12 +68,15 @@ const ProductCard: FC<ProductCardProps> = ({ product, isService }) => {
           onClick={() => setIsFavoriteClicked(!isFavoriteClicked)}
           onMouseEnter={() => setIsFavoriteHovered(true)}
           onMouseLeave={() => setIsFavoriteHovered(false)}
-          className="text-white hover:text-primary h-[36px] w-[36px] rounded-[6px] border-1 bg-primary border-gray-300 flex items-center justify-center hover:bg-white duration-200 cursor-pointer"
+          className=" text-white hover:text-primary h-[36px] w-[36px] rounded-[6px] bg-primary border-gray-300 flex items-center justify-center hover:bg-white duration-200 cursor-pointer"
         >
           {isFavoriteClicked || isFavoriteHovered ? (
             <IoMdHeart size={24} />
           ) : (
-            <IoMdHeartEmpty size={24} style={{ stroke: 'var(--color-text-primary)' }} />
+            <IoMdHeartEmpty
+              size={24}
+              style={{ stroke: "var(--color-text-primary)" }}
+            />
           )}
         </div>
       </div>

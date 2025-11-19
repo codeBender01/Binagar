@@ -46,6 +46,7 @@ const Header: FC = () => {
 
   const [openLoginModal, setOpenLoginModal] = useState(false);
   const [openSearchBar, setOpenSearchBar] = useState(false);
+  const [active, setActive] = useState<string>("");
 
   return (
     <header className={`${checkPath() && "hidden"} w-[100%] h-fit`}>
@@ -98,6 +99,7 @@ const Header: FC = () => {
         </div>
       </div>
 
+      {/* desktip tab buttons start */}
       <div className="hidden items-center lg:flex lg:px-[60px] lg2:px-[90px] justify-between bg-appBarColor pb-3 border-b-[1px] border-borderGray">
         <div className="flex items-center gap-[15px] lg2:gap-[60px]">
           <PillButton
@@ -128,17 +130,24 @@ const Header: FC = () => {
           />
         </div>
       </div>
+      {/* desktip tab buttons end */}
 
-      <ul className="rounded-xl bg-appBarColor mt-3 flex font-geo items-center mx-[30px] md:w-[55%] lg:hidden py-2 px-1">
+      {/* mobile tab start */}
+      <ul className="rounded-xl bg-appBarColor mt-3 flex font-geo items-center md:w-[55%] lg:hidden py-1.5 px-1 mx-[7px] justify-self-center">
         {mobileNavs.map((n) => {
           return (
             <li
               key={n.title}
               className={`${
                 n.title === "Dükanlar" ? "" : "border-r border-borderGray"
-              } flex-1 px-2`}
+              } flex-1 px-1`}
             >
-              <div className="p-2 flex gap-3 items-center duration-200 justify-center rounded-lg w-full hover:bg-activeTabGray hover:text-white cursor-pointer">
+              <div
+                className={` p-2 flex gap-1.5 text-[12px] sm:text-[16px]  items-center duration-200 justify-center rounded-lg w-full hover:bg-activeTabGray hover:text-white cursor-pointer ${
+                  active == n.title && "bg-activeTabGray text-white"
+                }`}
+                onClick={() => setActive(n.title)}
+              >
                 {n.icon}
                 {n.title}
               </div>
@@ -146,6 +155,7 @@ const Header: FC = () => {
           );
         })}
       </ul>
+      {/* mobile tab end */}
 
       <div
         className={

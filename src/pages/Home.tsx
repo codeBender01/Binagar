@@ -24,10 +24,13 @@ const Home: FC = () => {
   });
 
   return (
-    <div className="mt-4 w-[90%] mx-auto">
+    <div className="mt-4 w-[95%] mx-auto mb-[75px] lg:mb-[0px]">
       <Carousel />
 
-      <div className="text-[32px] flex items-center justify-center gap-2 font-geo mt-8 mb-4" style={{ color: 'var(--color-text-primary)' }}>
+      <div
+        className="text-[32px] flex items-center justify-center gap-2 font-geo mt-8 mb-4"
+        style={{ color: "var(--color-text-primary)" }}
+      >
         <BiCategory />
         Kategoriýalar
       </div>
@@ -37,7 +40,10 @@ const Home: FC = () => {
         }
       />
 
-      <div className="text-[32px] flex items-center justify-center gap-2 font-geo mt-8 mb-4" style={{ color: 'var(--color-text-primary)' }}>
+      <div
+        className="text-[32px] flex items-center justify-center gap-2 font-geo mt-8 mb-4"
+        style={{ color: "var(--color-text-primary)" }}
+      >
         <TbBrandAppgallery />
         Brendlar
       </div>
