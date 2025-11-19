@@ -14,8 +14,8 @@ const CategoriesList: FC<CategoriesListProps> = ({ categories }) => {
         return (
           <div
             key={c.id}
-            className="flex flex-col items-center border border-borderGray h-[105px] font-main text-sm rounded-lg justify-center gap-2 hover:opacity-95 hover:scale-110 duration-200 cursor-pointer"
-            style={{ color: 'var(--color-text-primary)' }}
+            className="flex flex-col items-center border border-borderGray h-[105px] font-main text-sm rounded-lg justify-center gap-2 cursor-pointer  transform transition-all duration-500 hover:shadow-[2px_10px_15px_0px_rgba(0,_0,_0,_0.1)]"
+            style={{ color: "var(--color-text-primary)" }}
           >
             {c.imageUrl ? (
               <div className="bg-gray-300 h-[40px] w-[40px]">
@@ -27,18 +27,27 @@ const CategoriesList: FC<CategoriesListProps> = ({ categories }) => {
               </div>
             )}
 
-            <div className="text-center line-clamp-1" style={{ color: 'inherit' }}>{c.name.tm}</div>
+            <div
+              className="text-center line-clamp-1"
+              style={{ color: "inherit" }}
+            >
+              {c.name.tm}
+            </div>
           </div>
         );
       })}
 
-      <div className="flex flex-col items-center border border-borderGray h-[105px] font-main text-sm rounded-lg justify-center gap-2 hover:opacity-95 hover:scale-110 duration-200 cursor-pointer"
-        style={{ color: 'var(--color-text-primary)' }}>
+      <div
+        className="flex flex-col items-center border border-borderGray h-[105px] font-main text-sm rounded-lg justify-center gap-2  hover:opacity-95 hover:scale-110 transition-all duration-200 cursor-pointer"
+        style={{ color: "var(--color-text-primary)" }}
+      >
         <div className="bg-primary text-white p-3 rounded-lg">
           <BiCategory size={24} />
         </div>
 
-        <div className="text-center line-clamp-1" style={{ color: 'inherit' }}>Hemmesini görmek</div>
+        <div className="text-center line-clamp-1" style={{ color: "inherit" }}>
+          Hemmesini görmek
+        </div>
       </div>
     </div>
   );

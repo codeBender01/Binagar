@@ -38,6 +38,6 @@ export const navs = [
     title: "Hasabym",
     icon: <IoPersonOutline size={22} />,
     activeIcon: <IoPerson size={22} />,
-    path: "/profile",
+    path: "profile",
   },
 ];

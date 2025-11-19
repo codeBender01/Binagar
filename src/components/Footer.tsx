@@ -12,10 +12,21 @@ import gPlay from "../assets/googleplay.CUq9iiJj.png";
 import appStore from "../assets/appstore.BzQ4lsL6.png";
 import apk from "../assets/apk.9ZYehQS_.png";
 
+const checkPath = () => {
+  return window.location.href.includes("profile");
+};
+
 const Footer: FC = () => {
   return (
-    <footer className="bg-appBarColor mt-[60px] pt-[50px]">
-      <div className="w-[90%] mx-auto py-[20px] flex flex-col gap-4 items-center" style={{ color: 'var(--color-text-primary)' }}>
+    <footer
+      className={`${
+        checkPath() && "hidden"
+      } bg-appBarColor mt-[60px] pt-[50px]`}
+    >
+      <div
+        className="w-[90%] mx-auto py-[20px] flex flex-col gap-4 items-center"
+        style={{ color: "var(--color-text-primary)" }}
+      >
         <div className="flex flex-col gap-[40px] md:flex-row md:gap-[140px] lg:gap-[160px] self-start">
           <div className="flex flex-col gap-2 mt-[12px] w-fit">
             <div className="text-gray2 text-md font-semibold font-main">

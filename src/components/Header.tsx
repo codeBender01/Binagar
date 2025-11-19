@@ -37,6 +37,10 @@ const mobileNavs = [
   },
 ];
 
+const checkPath = () => {
+  return window.location.href.includes("profile");
+};
+
 const Header: FC = () => {
   const navigate = useNavigate();
 
@@ -44,7 +48,7 @@ const Header: FC = () => {
   const [openSearchBar, setOpenSearchBar] = useState(false);
 
   return (
-    <header className="w-[100%] h-fit">
+    <header className={`${checkPath() && "hidden"} w-[100%] h-fit`}>
       <div className="px-[30px] lg2:px-[60px] flex items-center justify-between w-[100%] bg-appBarColor py-3">
         <div
           onClick={() => navigate("/home")}

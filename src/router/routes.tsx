@@ -13,6 +13,7 @@ const AdminLogin = lazy(() => import("../pages/AdminLogin"));
 const AdminProducts = lazy(() => import("../pages/AdminProducts"));
 const AdminCategories = lazy(() => import("../pages/AdminCategories"));
 const Services = lazy(() => import("../pages/Services"));
+const Profile = lazy(() => import("../pages/Profile"));
 
 export default function Router() {
   const routes = useRoutes([
@@ -51,6 +52,10 @@ export default function Router() {
         {
           element: <Services />,
           path: "services",
+        },
+        {
+          element: <Profile />,
+          path: "profile",
         },
       ],
     },
