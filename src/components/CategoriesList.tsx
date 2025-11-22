@@ -9,12 +9,12 @@ export interface CategoriesListProps {
 
 const CategoriesList: FC<CategoriesListProps> = ({ categories }) => {
   return (
-    <div className="mb-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
+    <div className="mb-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 transition-all duration-300">
       {categories.map((c) => {
         return (
           <div
             key={c.id}
-            className="flex flex-col items-center border border-borderGray h-[105px] font-main text-sm rounded-lg justify-center gap-2 cursor-pointer  transform transition-all duration-500 hover:shadow-[2px_10px_15px_0px_rgba(0,_0,_0,_0.1)]"
+            className="flex flex-col items-center border border-borderGray h-[105px] font-main text-sm rounded-lg justify-center gap-2 cursor-pointer shadow-none transition-all duration-300 ease-out hover:shadow-[2px_10px_15px_0px_rgba(0,_0,_0,_0.1)] hover:scale-105"
             style={{ color: "var(--color-text-primary)" }}
           >
             {c.imageUrl ? (
@@ -38,7 +38,7 @@ const CategoriesList: FC<CategoriesListProps> = ({ categories }) => {
       })}
 
       <div
-        className="flex flex-col items-center border border-borderGray h-[105px] font-main text-sm rounded-lg justify-center gap-2  hover:opacity-95 hover:scale-110 transition-all duration-200 cursor-pointer"
+        className="flex flex-col items-center border border-borderGray h-[105px] font-main text-sm rounded-lg justify-center gap-2  hover:opacity-95 hover:scale-110 transition-all duration-500 cursor-pointer"
         style={{ color: "var(--color-text-primary)" }}
       >
         <div className="bg-primary text-white p-3 rounded-lg">
