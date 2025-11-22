@@ -84,7 +84,6 @@ const Carousel: FC = () => {
           // For other items, calculate the position relative to the container
           const thumbnailTop = thumbnail.offsetTop;
           const thumbnailHeight = thumbnail.offsetHeight;
-          const containerScrollTop = container.scrollTop;
           const containerHeight = container.clientHeight;
           
           // Calculate the center position for the thumbnail
@@ -145,7 +144,7 @@ const Carousel: FC = () => {
             swiper.autoplay.resume();
           }}
         >
-          {mainSlides.map((slide, index) => (
+          {mainSlides.map((slide) => (
             <SwiperSlide key={slide.id}>
               <div className="relative w-full h-full overflow-hidden bg-gray-900">
                 <img
