@@ -11,8 +11,19 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 
 import "../antd.css";
 
+interface BasketItem {
+  productImg: string;
+  productName: string;
+  price: string;
+  sum: string;
+  id?: string;
+}
+
 const Basket: FC = () => {
-  const [amount, setAmount] = useState(1);
+  const [amounts, setAmounts] = useState<{ [key: string]: number }>({
+    "1": 1,
+    "2": 1,
+  });
   const [paymentType, setPaymentType] = useState("cash");
 
   const columns = [
@@ -48,68 +59,58 @@ const Basket: FC = () => {
       title: "Sany",
       key: "amount",
       width: 160,
-      render: () => {
-        return (
-          <div className="min-w-[120px] flex rounded-full border-[1px] border-borderGray items-center justify-between p-2 fotn-geo">
-            <div
-              onClick={() => {
-                if (amount === 1) {
-                  return;
-                }
-                setAmount((prev) => prev - 1);
-              }}
-              className="bg-mainBlue text-white rounded-full h-[100%] p-1 text-md hover:opacity-80 duration-200"
-            >
-              <AiOutlineMinus />
-            </div>
-            <div>{amount}</div>
-            <div
-              onClick={() => {
-                setAmount((prev) => prev + 1);
-              }}
-              className="bg-mainBlue text-white rounded-full h-[100%] p-1 text-md hover:opacity-80 duration-200"
-            >
-              <IoIosAdd />
-            </div>
-          </div>
-        );
-      },
+      render: () => null, // Will be overridden in JSX
     },
     {
       title: "Umumy",
       key: "sum",
       dataIndex: "sum",
-      render: (val: string) => {
-        return <div className="font-geo">{val}</div>;
-      },
+      render: () => null, // Will be overridden in JSX
     },
     {
       title: "Aýyrmak",
       key: "delete",
-      render: () => {
-        return (
-          <div className="text-red border-[1px] rounded-[4px] border-borderGray w-fit text-[22px] p-1 hover:opacity-80 duration-200 cursor-pointer">
-            <MdDeleteOutline />
-          </div>
-        );
-      },
+      render: () => null, // Will be overridden in JSX
     },
   ];
 
-  const rows = [
+  const rows: BasketItem[] = [
     {
+      id: "1",
       productImg: drill,
       productName: "Product Tittle",
       price: "500 tmt",
       sum: "1000 tmt",
     },
     {
+      id: "2",
       productImg: drill,
       productName: "Product Tittle",
       price: "500 tmt",
       sum: "1000 tmt",
     },
   ];
+
+  const handleAmountChange = (itemId: string, delta: number) => {
+    setAmounts((prev) => {
+      const newAmount = (prev[itemId] || 1) + delta;
+      return {
+        ...prev,
+        [itemId]: Math.max(1, newAmount),
+      };
+    });
+  };
+
+  const handleDelete = (itemId: string) => {
+    // TODO: Implement delete functionality
+    console.log("Delete item:", itemId);
+  };
+
+  const totalSum = rows.reduce((sum, item) => {
+    const amount = amounts[item.id || ""] || 1;
+    const price = parseFloat(item.price.replace(" tmt", "").replace(/\s/g, ""));
+    return sum + price * amount;
+  }, 0);
 
   return (
     <div className="w-[90%] mx-auto">
@@ -117,29 +118,195 @@ const Basket: FC = () => {
         <span className="text-gray">Home</span> /{" "}
         <span className="text-gray">Category</span> / Basket
       </div>
-      <div className="text-[32px] md:text-[48px] md2:mb-4 text-textBlack font-bold font-geo">
+      <div
+        className="text-[32px] md:text-[48px] md2:mb-4 font-bold font-geo"
+        style={{ color: "var(--color-text-primary)" }}
+      >
         Basket
       </div>
 
       <div className="flex flex-col gap-4 lg2:gap-0 lg2:flex-row justify-between">
         <div className="w-[100%] lg2:w-[70%]">
-          <div className="text-[18px] text-textBlack font-main">Harytlar</div>
-          <Table
-            scroll={{
-              x: true,
-            }}
-            className="w-[100%] mt-6 font-geo"
-            columns={columns}
-            dataSource={rows}
-            pagination={false}
-          />
-          <div className="flex justify-between bg-white px-4 py-2">
-            <div className="text-[18px] text-textBlack font-main">Umumy:</div>
-            <div className="text-[18px] text-textBlack font-main">1500tmt</div>
+          <div
+            className="text-[18px] font-main"
+            style={{ color: "var(--color-text-primary)" }}
+          >
+            Harytlar
+          </div>
+
+          {/* Mobile Card View - shown on screens smaller than lg */}
+          <div className="lg:hidden mt-6 flex flex-col gap-4">
+            {rows.map((item) => {
+              const amount = amounts[item.id || ""] || 1;
+              return (
+                <div
+                  key={item.id}
+                  className="bg-appBarColor rounded-[20px] p-4 flex gap-4"
+                  style={{ color: "var(--color-text-primary)" }}
+                >
+                  <div className="w-[100px] h-[100px] flex-shrink-0">
+                    <img
+                      src={item.productImg}
+                      alt={item.productName}
+                      className="w-full h-full object-contain rounded-lg"
+                    />
+                  </div>
+                  <div className="flex-1 flex flex-col justify-between">
+                    <div>
+                      <div className="font-geo font-semibold text-[16px] mb-1">
+                        {item.productName}
+                      </div>
+                      <div
+                        className="font-geo text-[14px] mb-2"
+                        style={{ color: "var(--color-text-secondary)" }}
+                      >
+                        {item.price}
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <div className="min-w-[100px] flex rounded-full border-[1px] border-borderGray items-center justify-between p-2">
+                        <div
+                          onClick={() => {
+                            if (amount > 1) {
+                              handleAmountChange(item.id || "", -1);
+                            }
+                          }}
+                          className={`bg-mainBlue text-white rounded-full h-[100%] p-1 text-md hover:opacity-80 duration-200 cursor-pointer ${
+                            amount === 1 ? "opacity-50 cursor-not-allowed" : ""
+                          }`}
+                        >
+                          <AiOutlineMinus />
+                        </div>
+                        <div
+                          className="font-geo px-2"
+                          style={{ color: "var(--color-text-primary)" }}
+                        >
+                          {amount}
+                        </div>
+                        <div
+                          onClick={() => handleAmountChange(item.id || "", 1)}
+                          className="bg-mainBlue text-white rounded-full h-[100%] p-1 text-md hover:opacity-80 duration-200 cursor-pointer"
+                        >
+                          <IoIosAdd />
+                        </div>
+                      </div>
+                      <div
+                        onClick={() => handleDelete(item.id || "")}
+                        className="text-red border-[1px] rounded-[4px] border-borderGray w-fit text-[22px] p-2 hover:opacity-80 duration-200 cursor-pointer ml-2"
+                      >
+                        <MdDeleteOutline />
+                      </div>
+                    </div>
+                    <div className="mt-2 font-geo font-semibold">
+                      Umumy:{" "}
+                      {parseFloat(
+                        item.price.replace(" tmt", "").replace(/\s/g, "")
+                      ) * amount}{" "}
+                      tmt
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Desktop Table View - shown on lg and larger screens */}
+          <div className="hidden lg:block">
+            <Table
+              scroll={{
+                x: true,
+              }}
+              className="w-[100%] mt-6 font-geo"
+              columns={columns.map((col) => {
+                if (col.key === "amount") {
+                  return {
+                    ...col,
+                    render: (_: any, record: BasketItem) => {
+                      const amount = amounts[record.id || ""] || 1;
+                      return (
+                        <div className="min-w-[120px] flex rounded-full border-[1px] border-borderGray items-center justify-between p-2 font-geo">
+                          <div
+                            onClick={() => {
+                              if (amount > 1) {
+                                handleAmountChange(record.id || "", -1);
+                              }
+                            }}
+                            className={`bg-mainBlue text-white rounded-full h-[100%] p-1 text-md hover:opacity-80 duration-200 cursor-pointer ${
+                              amount === 1
+                                ? "opacity-50 cursor-not-allowed"
+                                : ""
+                            }`}
+                          >
+                            <AiOutlineMinus />
+                          </div>
+                          <div
+                            style={{ color: "var(--color-text-primary)" }}
+                            className="font-geo"
+                          >
+                            {amount}
+                          </div>
+                          <div
+                            onClick={() =>
+                              handleAmountChange(record.id || "", 1)
+                            }
+                            className="bg-mainBlue text-white rounded-full h-[100%] p-1 text-md hover:opacity-80 duration-200 cursor-pointer"
+                          >
+                            <IoIosAdd />
+                          </div>
+                        </div>
+                      );
+                    },
+                  };
+                }
+                if (col.key === "delete") {
+                  return {
+                    ...col,
+                    render: (_: any, record: BasketItem) => {
+                      return (
+                        <div
+                          onClick={() => handleDelete(record.id || "")}
+                          className="text-red border-[1px] rounded-[4px] border-borderGray w-fit text-[22px] p-1 hover:opacity-80 duration-200 cursor-pointer"
+                        >
+                          <MdDeleteOutline />
+                        </div>
+                      );
+                    },
+                  };
+                }
+                if (col.key === "sum") {
+                  return {
+                    ...col,
+                    render: (_val: string, record: BasketItem) => {
+                      const amount = amounts[record.id || ""] || 1;
+                      const price = parseFloat(
+                        record.price.replace(" tmt", "").replace(/\s/g, "")
+                      );
+                      return (
+                        <div className="font-geo">{price * amount} tmt</div>
+                      );
+                    },
+                  };
+                }
+                return col;
+              })}
+              dataSource={rows}
+              pagination={false}
+            />
+          </div>
+
+          <div
+            className="flex justify-between bg-appBarColor px-4 py-2 mt-4 lg:mt-0"
+            style={{ color: "var(--color-text-primary)" }}
+          >
+            <div className="text-[18px] font-main">Umumy:</div>
+            <div className="text-[18px] font-main">{totalSum} tmt</div>
           </div>
         </div>
 
-        <div className=" w-[100%] lg2:w-[25%] bg-white self-start border-none lg2:border-[1px] border-borderGray rounded-none lg2:rounded-4xl py-4 px-8">
+        <div
+          className="w-[100%] lg2:w-[25%] bg-appBarColor self-start border-none lg2:border-[1px] border-borderGray rounded-none lg2:rounded-4xl py-4 px-4 lg2:px-8 mt-4 lg2:mt-0"
+          style={{ color: "var(--color-text-primary)" }}
+        >
           <div className="text-[22px] font-geo">Töleg görnüşi</div>
           <Radio.Group
             className="mt-2 flex-col flex gap-2"
@@ -150,19 +317,36 @@ const Basket: FC = () => {
             options={[
               {
                 value: "cash",
-                label: <div className=" font-main">Nagt</div>,
+                label: (
+                  <div
+                    className="font-main"
+                    style={{ color: "var(--color-text-primary)" }}
+                  >
+                    Nagt
+                  </div>
+                ),
               },
               {
                 value: "card",
-                label: <div className=" font-main">Kart üsti</div>,
+                label: (
+                  <div
+                    className="font-main"
+                    style={{ color: "var(--color-text-primary)" }}
+                  >
+                    Kart üsti
+                  </div>
+                ),
               },
             ]}
           ></Radio.Group>
         </div>
       </div>
 
-      <div className="w-[100%] lg2:w-[70%] bg-white flex flex-col gap-4 mt-8 py-4 px-4">
-        <div className="text-[20px] text-textBlack font-bold font-geo ">
+      <div className="w-[100%] lg2:w-[70%] bg-appBarColor flex flex-col gap-4 mt-8 py-4 px-4">
+        <div
+          className="text-[20px] font-bold font-geo"
+          style={{ color: "var(--color-text-primary)" }}
+        >
           Müşderi maglumaty
         </div>
 

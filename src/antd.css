@@ -1,5 +1,12 @@
 .ant-input {
   font-family: Geo, sans-serif;
+  background-color: var(--color-appBarColor) !important;
+  color: var(--color-text-primary) !important;
+  border-color: var(--color-borderGray) !important;
+}
+
+.ant-input::placeholder {
+  color: var(--color-text-secondary) !important;
 }
 
 .ant-radio-wrapper .ant-radio-checked::after {
@@ -28,10 +35,21 @@ th.ant-table-cell {
   background: var(--color-tableBg) !important;
   padding: 16px !important;
   border-radius: 0 !important;
+  color: var(--color-text-primary) !important;
 }
 
 th.ant-table-cell::before {
   display: none;
+}
+
+td.ant-table-cell {
+  background: var(--color-appBarColor) !important;
+  color: var(--color-text-primary) !important;
+}
+
+.ant-table {
+  background: var(--color-appBarColor) !important;
+  color: var(--color-text-primary) !important;
 }
 
 .ant-col.ant-form-item-label.css-dev-only-do-not-override-qnu6hi {
@@ -48,4 +66,36 @@ th.ant-table-cell::before {
 
 .ant-input:hover {
   border-color: transparent !important;
+}
+
+.ant-input-affix-wrapper {
+  background-color: var(--color-appBarColor) !important;
+  border-color: var(--color-borderGray) !important;
+}
+
+.ant-input-affix-wrapper input {
+  background-color: transparent !important;
+  color: var(--color-text-primary) !important;
+}
+
+.ant-input-affix-wrapper input::placeholder {
+  color: var(--color-text-secondary) !important;
+}
+
+textarea.ant-input {
+  background-color: var(--color-appBarColor) !important;
+  color: var(--color-text-primary) !important;
+  border-color: var(--color-borderGray) !important;
+}
+
+textarea.ant-input::placeholder {
+  color: var(--color-text-secondary) !important;
+}
+
+.ant-radio-wrapper {
+  color: var(--color-text-primary) !important;
+}
+
+.ant-radio-wrapper span {
+  color: var(--color-text-primary) !important;
 }

@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import logo from "../assets/logo.png";
+import logoWhite from "../assets/logo-white.png";
 
 import { Input } from "antd";
 import PillButton from "./PillButton";
@@ -48,6 +49,8 @@ const Header: FC = () => {
   const [openSearchBar, setOpenSearchBar] = useState(false);
   const [active, setActive] = useState<string>("");
 
+  const isDark = document.documentElement.classList.contains("dark");
+
   return (
     <header className={`${checkPath() && "hidden"} w-[100%] h-fit`}>
       <div className="px-[30px] lg2:px-[60px] flex items-center justify-between w-[100%] bg-appBarColor py-3">
@@ -56,7 +59,7 @@ const Header: FC = () => {
           className="w-[120px] h-[76px] lg:w-[140px] lg:h-[96px]"
         >
           <img
-            src={logo}
+            src={isDark ? logoWhite : logo}
             alt="logo"
             className="w-[100%] h-[100%] object-contain"
           />
@@ -90,7 +93,7 @@ const Header: FC = () => {
           </div>
           <div
             onClick={() => setOpenSearchBar(!openSearchBar)}
-            className="flex items-center gap-[12px] border-[1px] rounded-[10px] lg:rounded-full p-1 visible lg:hidden border-borderGray group cursor-pointer hover:bg-primary duration-200"
+            className="flex items-center gap-[12px] rounded-full lg:rounded-full visible lg:hidden group cursor-pointer hover:bg-primary duration-200"
           >
             <div className="bg-primary text-white rounded-full p-2 group-hover:bg-white group-hover:text-primary duration-200">
               <IoIosSearch size={24} />
@@ -122,7 +125,11 @@ const Header: FC = () => {
         </div>
 
         <div className="flex items-center gap-[20px]">
-          <PillButton text="Halanlarym" icon={<IoMdHeartEmpty />} />
+          <PillButton
+            text="Halanlarym"
+            icon={<IoMdHeartEmpty />}
+            onClick={() => navigate("/home/liked")}
+          />
           <PillButton
             onClick={() => setOpenLoginModal(true)}
             text="Profilim"

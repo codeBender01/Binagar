@@ -89,46 +89,71 @@ const Profile = () => {
 
   const ItemComponent: FC<ItemComponentProps> = ({ item }) => {
     return (
-      <div className="flex items-center h-[60px] justify-between text-white px-[10px]">
+      <div
+        className="flex items-center h-[60px] justify-between px-[10px]"
+        style={{ color: "var(--color-text-primary)" }}
+      >
         <div className="flex items-center gap-[15px]">
           <div
             className={`py-[12px] px-[15px] border-[1px] rounded-lg ${item.border} ${item.color}`}
           >
             {item.icon}
           </div>
-          <h2 className="text-white">{item.name}</h2>
+          <h2 style={{ color: "var(--color-text-primary)" }}>{item.name}</h2>
         </div>
-        <FaChevronRight />
+        <FaChevronRight
+          style={{ color: "var(--color-text-secondary)" }}
+          className="text-[14px]"
+        />
       </div>
     );
   };
 
   return (
-    <div className="px-[7px] pt-[15px] bg-black">
-      <div className="flex items-center justify-center h-[50px] bg-[#3A3A3A] rounded-lg text-white text-[18px]">
+    <div className="px-[7px] pt-[15px] bg-background">
+      <div
+        className="flex items-center justify-center h-[50px] bg-appBarColor rounded-lg text-[18px]"
+        style={{ color: "var(--color-text-primary)" }}
+      >
         Hasabym
       </div>
-      <div className="my-[15px] text-white mt-[15px]">
-        <div className="bg-gray-100 rounded-lg py-[15px] px-[25px] w-fit text-black text-[35px] font-[600] mx-auto mb-[10px]">
+      <div
+        className="my-[15px] mt-[15px]"
+        style={{ color: "var(--color-text-primary)" }}
+      >
+        <div
+          className="bg-appBarColor rounded-lg py-[15px] px-[25px] w-fit text-[35px] font-[600] mx-auto mb-[10px]"
+          style={{ color: "var(--color-text-primary)" }}
+        >
           U
         </div>
-        <h2 className="text-center text-[20px] font-[600]">Username</h2>
-        <p className="text-center">+993 61511331</p>
+        <h2
+          className="text-center text-[20px] font-[600]"
+          style={{ color: "var(--color-text-primary)" }}
+        >
+          Username
+        </h2>
+        <p
+          className="text-center"
+          style={{ color: "var(--color-text-secondary)" }}
+        >
+          +993 61511331
+        </p>
       </div>
 
-      <div className="bg-[#3A3A3A] rounded-lg py-[5px]">
+      <div className="bg-appBarColor rounded-lg py-[5px]">
         {items1.map((item, index) => (
           <ItemComponent item={item} key={index} />
         ))}
       </div>
 
-      <div className="bg-[#3A3A3A] rounded-lg py-[5px] mt-[15px]">
+      <div className="bg-appBarColor rounded-lg py-[5px] mt-[15px]">
         {items2.map((item, index) => (
           <ItemComponent item={item} key={index} />
         ))}
       </div>
 
-      <div className="bg-[#3A3A3A] rounded-lg py-[5px] mt-[15px] mb-[100px]">
+      <div className="bg-appBarColor rounded-lg py-[5px] mt-[15px] mb-[100px]">
         {items3.map((item, index) => (
           <ItemComponent item={item} key={index} />
         ))}

@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import AnimatedButton from "./AnimatedButton";
@@ -13,17 +13,33 @@ import { OneSeparateService } from "../interfaces/service.interface";
 interface ProductCardProps {
   product: OneSeparateProduct | OneSeparateService;
   isService: boolean;
+  isLiked?: boolean;
+  onFavoriteToggle?: (productId: string) => void;
 }
 
-const ProductCard: FC<ProductCardProps> = ({ product, isService }) => {
+const ProductCard: FC<ProductCardProps> = ({
+  product,
+  isService,
+  isLiked: externalIsLiked,
+  onFavoriteToggle,
+}) => {
   const navigate = useNavigate();
 
-  const [isFavoriteClicked, setIsFavoriteClicked] = useState(false);
+  const [isFavoriteClicked, setIsFavoriteClicked] = useState(
+    externalIsLiked ?? false
+  );
   const [isFavoriteHovered, setIsFavoriteHovered] = useState(false);
+
+  // Update internal state when external isLiked prop changes
+  useEffect(() => {
+    if (externalIsLiked !== undefined) {
+      setIsFavoriteClicked(externalIsLiked);
+    }
+  }, [externalIsLiked]);
   return (
     <div
       className="min-w-[200px] w-[97%] bg-appBarColor p-[18px] flex flex-col justify-between rounded-[20px]"
-      onClick={() => navigate("/product")}
+      onClick={() => navigate("/home/product")}
     >
       <div className="w-[100%] h-[180px] bg-gray-300 rounded-[20px] relative">
         <img
@@ -65,7 +81,14 @@ const ProductCard: FC<ProductCardProps> = ({ product, isService }) => {
         <AnimatedButton />
 
         <div
-          onClick={() => setIsFavoriteClicked(!isFavoriteClicked)}
+          onClick={(e) => {
+            e.stopPropagation();
+            const newState = !isFavoriteClicked;
+            setIsFavoriteClicked(newState);
+            if (onFavoriteToggle) {
+              onFavoriteToggle(product.id);
+            }
+          }}
           onMouseEnter={() => setIsFavoriteHovered(true)}
           onMouseLeave={() => setIsFavoriteHovered(false)}
           className=" text-white hover:text-primary h-[36px] w-[36px] rounded-[6px] bg-primary border-gray-300 flex items-center justify-center hover:bg-white duration-200 cursor-pointer"
