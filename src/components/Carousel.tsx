@@ -120,26 +120,8 @@ const Carousel: FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-transparent to-blue-500/10 pointer-events-none" />
                 
-                {/* Shimmer effect overlay */}
-                <div 
-                  className="absolute inset-0 pointer-events-none opacity-30"
-                  style={{
-                    background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent)",
-                    backgroundSize: "1000px 100%",
-                    animation: "shimmer 3s infinite",
-                  }}
-                />
 
-                {/* Badge overlay */}
-                {slide.badge && (
-                  <div className="absolute top-6 left-6 bg-red-600 text-white text-sm font-bold px-4 py-2 rounded-lg shadow-2xl backdrop-blur-sm bg-opacity-95 border border-red-400/30"
-                    style={{
-                      animation: "fade-in-up 0.6s ease-out",
-                    }}
-                  >
-                    {slide.badge}
-                  </div>
-                )}
+
               </div>
             </SwiperSlide>
           ))}
@@ -210,21 +192,22 @@ const Carousel: FC = () => {
       </div>
 
       {/* Side Promotional Banners - Right Side with Timeline */}
-      <div className="hidden lg2:flex lg2:flex-col lg2:w-[15%] gap-3">
-        {sidePromos.slice(0, 4).map((promo, index) => {
+      <div className="hidden lg2:flex lg2:flex-col lg2:w-[15%] gap-3 overflow-y-auto max-h-[280px] sm:max-h-[350px] md:max-h-[420px] lg:max-h-[480px]" style={{ scrollbarWidth: 'thin' }}>
+        {sidePromos.slice(0, 5).map((promo, index) => {
           const isActive = index === activeIndex;
           
           return (
             <div
               key={promo.id}
               onClick={() => handleThumbnailClick(index)}
-              className={`relative group overflow-hidden rounded-xl cursor-pointer flex-1 transition-all duration-500 ${
+              className={`relative group overflow-hidden rounded-xl cursor-pointer transition-all duration-500 ${
                 isActive 
                   ? "ring-4 ring-indigo-500 shadow-2xl" 
                   : "ring-2 ring-transparent hover:ring-indigo-300"
               }`}
               style={{
-                minHeight: "110px",
+                height: "110px",
+                flexShrink: 0,
                 background: isActive 
                   ? "linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1))"
                   : "linear-gradient(135deg, rgba(243, 244, 246, 0.5), rgba(229, 231, 235, 0.5))",
@@ -256,15 +239,7 @@ const Carousel: FC = () => {
                   isActive ? "opacity-0" : "opacity-0 group-hover:opacity-100"
                 }`} />
                 
-                {/* Shimmer effect on hover */}
-                <div 
-                  className="absolute inset-0 opacity-0 group-hover:opacity-40 pointer-events-none transition-opacity duration-300"
-                  style={{
-                    background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)",
-                    backgroundSize: "200px 100%",
-                    animation: "shimmer 1.5s infinite",
-                  }}
-                />
+
 
                 {/* Badge for first item */}
                 {/* {index === 0 && (
@@ -291,14 +266,7 @@ const Carousel: FC = () => {
                   </div>
                 </div>
 
-                {/* Active indicator with number */}
-                <div className={`absolute top-2 right-2 w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300 ${
-                  isActive 
-                    ? "bg-indigo-600 text-white shadow-lg scale-110" 
-                    : "bg-white/80 text-gray-700 backdrop-blur-sm"
-                }`}>
-                  {index + 1}
-                </div>
+
               </div>
 
               {/* Outer glow effect for active slide */}
