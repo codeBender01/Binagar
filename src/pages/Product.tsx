@@ -1,11 +1,16 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 
 import drill from "../assets/drill.png";
 
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { IoMdHeartEmpty } from "react-icons/io";
+import { FaBox } from "react-icons/fa6";
+
+import "../components/AnimatedButton/index.css";
 
 const Product: FC = () => {
+  const [isCartClicked, setIsCartClicked] = useState(false);
+
   return (
     <div className="w-full sm:w-[95%] md:w-[90%] mx-auto mb-8 md:mb-12 px-4 sm:px-0">
       {/* Breadcrumb */}
@@ -86,13 +91,16 @@ const Product: FC = () => {
             </div>
             
             <div className="flex gap-2 sm:gap-3">
-              {/* Add to Cart Button */}
+              {/* Add to Cart Button with Animation */}
               <button 
-                className="bg-primary text-white h-[48px] sm:h-[50px] flex-1 rounded-xl font-geo font-medium flex items-center justify-center gap-1.5 sm:gap-2 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 cursor-pointer text-sm sm:text-base"
+                className={`cart-button ${isCartClicked ? 'clicked' : ''}`}
                 style={{
                   backgroundColor: 'var(--color-primary)',
                   boxShadow: '0 4px 12px rgba(99, 102, 241, 0.2)',
+                  flex: 1,
+                  height: '48px',
                 }}
+                onClick={() => setIsCartClicked(true)}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.boxShadow = '0 6px 20px rgba(99, 102, 241, 0.3)';
                 }}
@@ -100,9 +108,14 @@ const Product: FC = () => {
                   e.currentTarget.style.boxShadow = '0 4px 12px rgba(99, 102, 241, 0.2)';
                 }}
               >
-                <MdOutlineShoppingCart size={20} className="sm:w-[22px] sm:h-[22px]" />
-                <span className="hidden xs:inline">Sebede goş</span>
-                <span className="xs:hidden">Goş</span>
+                <span className="add-to-cart">Sebede goş</span>
+                <span className="added">Goşuldy</span>
+                <div className="fas fa-shopping-cart">
+                  <MdOutlineShoppingCart />
+                </div>
+                <div className="fas fa-box">
+                  <FaBox />
+                </div>
               </button>
               
               {/* Favorite Button */}
