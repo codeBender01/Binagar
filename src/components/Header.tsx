@@ -53,10 +53,10 @@ const Header: FC = () => {
 
   return (
     <header className={`${checkPath() && "hidden"} w-[100%] h-fit`}>
-      <div className="px-[30px] lg2:px-[60px] flex items-center justify-between w-[100%] bg-appBarColor py-3">
+      <div className="px-[30px] lg2:px-[60px] flex items-center justify-between w-[100%] py-3 backdrop-blur-md" style={{ backgroundColor: "var(--color-appBarColor)" }}>
         <div
           onClick={() => navigate("/home")}
-          className="w-[120px] h-[76px] lg:w-[140px] lg:h-[96px]"
+          className="w-[120px] h-[76px] lg:w-[140px] lg:h-[96px] cursor-pointer"
         >
           <img
             src={isDark ? logoWhite : logo}
@@ -69,7 +69,7 @@ const Header: FC = () => {
             prefix={
               <CiSearch style={{ color: "var(--color-iconGray)" }} size={22} />
             }
-            className="rounded-[6px] h-[48px] w-full placeholder:font-geo font-geo!"
+            className="rounded-lg h-[48px] w-full placeholder:font-geo font-geo!"
             placeholder="Поиск товара или бренда"
           />
         </div>
@@ -81,29 +81,33 @@ const Header: FC = () => {
             onClick={() => {
               navigate("/home/basket");
             }}
-            className="hidden lg:flex items-center gap-[12px] text-nowrap border-[1px] rounded-[10px] lg:rounded-full p-1 lg:pr-[12px] border-borderGray group cursor-pointer hover:bg-primary duration-200"
+            className="hidden lg:flex items-center gap-[12px] text-nowrap border rounded-lg lg:rounded-full p-1 lg:pr-[12px] border-borderGray group cursor-pointer hover:bg-primary hover:text-white transition-all duration-300 backdrop-blur-sm"
+            style={{
+              backdropFilter: "blur(8px)",
+              WebkitBackdropFilter: "blur(8px)",
+            }}
           >
-            <div className="bg-primary text-white rounded-full p-2 group-hover:bg-white group-hover:text-primary duration-200">
+            <div className="bg-primary text-white rounded-full p-2 group-hover:bg-white group-hover:text-primary transition-all duration-300">
               <LuShoppingBasket size={24} />
             </div>
 
-            <div className="hidden lg:flex font-geo text-mainBlue group-hover:text-white duration-200">
+            <div className="hidden lg:flex font-geo text-mainBlue group-hover:text-white transition-colors duration-300">
               2 товара: 1 208 tmt
             </div>
           </div>
           <div
             onClick={() => setOpenSearchBar(!openSearchBar)}
-            className="flex items-center gap-[12px] rounded-full lg:rounded-full visible lg:hidden group cursor-pointer hover:bg-primary duration-200"
+            className="flex items-center gap-[12px] rounded-full lg:rounded-full visible lg:hidden group cursor-pointer hover:bg-primary transition-all duration-300"
           >
-            <div className="bg-primary text-white rounded-full p-2 group-hover:bg-white group-hover:text-primary duration-200">
+            <div className="bg-primary text-white rounded-full p-2 group-hover:bg-white group-hover:text-primary transition-all duration-300">
               <IoIosSearch size={24} />
             </div>
           </div>
         </div>
       </div>
 
-      {/* desktip tab buttons start */}
-      <div className="hidden items-center lg:flex lg:px-[60px] lg2:px-[90px] justify-between bg-appBarColor pb-3 border-b-[1px] border-borderGray">
+      {/* desktop tab buttons start */}
+      <div className="hidden items-center lg:flex lg:px-[60px] lg2:px-[90px] justify-between pb-3 border-b border-borderGray backdrop-blur-md" style={{ backgroundColor: "var(--color-appBarColor)" }}>
         <div className="flex items-center gap-[15px] lg2:gap-[60px]">
           <PillButton
             onClick={() => navigate("/home/products")}
@@ -140,7 +144,7 @@ const Header: FC = () => {
       {/* desktip tab buttons end */}
 
       {/* mobile tab start */}
-      <ul className="rounded-xl bg-appBarColor mt-3 flex font-geo items-center md:w-[55%] lg:hidden py-1.5 px-1 mx-[7px] justify-self-center">
+      <ul className="rounded-xl mt-3 flex font-geo items-center md:w-[55%] lg:hidden py-1.5 px-1 mx-[7px] justify-self-center backdrop-blur-md" style={{ backgroundColor: "var(--color-appBarColor)" }}>
         {mobileNavs.map((n) => {
           return (
             <li
@@ -150,7 +154,7 @@ const Header: FC = () => {
               } flex-1 px-1`}
             >
               <div
-                className={` p-2 flex gap-1.5 text-[12px] sm:text-[16px]  items-center duration-200 justify-center rounded-lg w-full hover:bg-activeTabGray hover:text-white cursor-pointer ${
+                className={`p-2 flex gap-1.5 text-[12px] sm:text-[16px] items-center transition-all duration-300 justify-center rounded-lg w-full hover:bg-activeTabGray hover:text-white cursor-pointer ${
                   active == n.title && "bg-activeTabGray text-white"
                 }`}
                 onClick={() => setActive(n.title)}

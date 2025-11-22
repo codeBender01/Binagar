@@ -17,6 +17,8 @@ const Carousel: FC = () => {
   const [progress, setProgress] = useState(0);
   const swiperRef = useRef<SwiperType | null>(null);
   const progressIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const thumbnailRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   const mainSlides = [
     { id: 1, img: img1, alt: "Banner 1" },
@@ -51,7 +53,8 @@ const Carousel: FC = () => {
     progressIntervalRef.current = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
-          return 0; // Reset when complete
+          clearInterval(progressIntervalRef.current!);
+          return 100; // Stay at 100% instead of resetting
         }
         return prev + increment;
       });
@@ -62,6 +65,39 @@ const Carousel: FC = () => {
         clearInterval(progressIntervalRef.current);
       }
     };
+  }, [activeIndex]);
+
+  // Scroll active thumbnail into view
+  useEffect(() => {
+    if (thumbnailRefs.current[activeIndex] && containerRef.current) {
+      const thumbnail = thumbnailRefs.current[activeIndex];
+      const container = containerRef.current;
+      
+      if (thumbnail) {
+        // If we're at the first item, always scroll to the top
+        if (activeIndex === 0) {
+          container.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        } else {
+          // For other items, calculate the position relative to the container
+          const thumbnailTop = thumbnail.offsetTop;
+          const thumbnailHeight = thumbnail.offsetHeight;
+          const containerScrollTop = container.scrollTop;
+          const containerHeight = container.clientHeight;
+          
+          // Calculate the center position for the thumbnail
+          const centerPosition = thumbnailTop - (containerHeight / 2) + (thumbnailHeight / 2);
+          
+          // Always scroll to center the active thumbnail
+          container.scrollTo({
+            top: Math.max(0, centerPosition),
+            behavior: 'smooth'
+          });
+        }
+      }
+    }
   }, [activeIndex]);
 
   const handleThumbnailClick = (index: number) => {
@@ -96,7 +132,7 @@ const Carousel: FC = () => {
           autoplay={{
             delay: 5000,
             disableOnInteraction: false,
-            pauseOnMouseEnter: true,
+            pauseOnMouseEnter: false,
           }}
           speed={800}
           loop
@@ -104,10 +140,14 @@ const Carousel: FC = () => {
             swiperRef.current = swiper;
           }}
           onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+          onAutoplayPause={(swiper) => {
+            // Force autoplay to resume - don't allow pausing
+            swiper.autoplay.resume();
+          }}
         >
           {mainSlides.map((slide, index) => (
             <SwiperSlide key={slide.id}>
-              <div className="relative w-full h-full overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800">
+              <div className="relative w-full h-full overflow-hidden bg-gray-900">
                 <img
                   src={slide.img}
                   alt={slide.alt}
@@ -116,9 +156,8 @@ const Carousel: FC = () => {
                     animation: "ken-burns-zoom 10s ease-out infinite alternate",
                   }}
                 />
-                {/* Multi-layer gradient overlays for depth */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-transparent to-blue-500/10 pointer-events-none" />
+                {/* Subtle overlay for depth */}
+                <div className="absolute inset-0 bg-black/20" />
                 
 
 
@@ -127,29 +166,28 @@ const Carousel: FC = () => {
           ))}
         </Swiper>
 
-        {/* Enhanced navigation buttons styling with glassmorphism */}
+        {/* Glassmorphism navigation buttons styling */}
         <style>{`
           .swiper-button-prev,
           .swiper-button-next {
-            background: rgba(255, 255, 255, 0.15);
-            width: 50px;
-            height: 50px;
+            background: var(--glass-bg-strong);
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             opacity: 0;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 
-                        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(var(--backdrop-blur));
+            -webkit-backdrop-filter: blur(var(--backdrop-blur));
+            box-shadow: var(--glass-shadow);
+            border: 1px solid var(--glass-border);
           }
           
           .swiper-button-prev:after,
           .swiper-button-next:after {
-            font-size: 20px;
-            font-weight: 900;
+            font-size: 18px;
+            font-weight: 800;
             color: #ffffff;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
           }
 
           .swiper:hover .swiper-button-prev,
@@ -160,82 +198,85 @@ const Carousel: FC = () => {
           .swiper-button-prev:hover,
           .swiper-button-next:hover {
             background: rgba(255, 255, 255, 0.25);
-            transform: scale(1.15);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), 
-                        0 0 0 1px rgba(255, 255, 255, 0.2) inset,
-                        0 0 20px rgba(99, 102, 241, 0.4);
+            transform: scale(1.1);
+            box-shadow: var(--shadow-glass);
           }
 
           .swiper-button-prev:active,
           .swiper-button-next:active {
-            transform: scale(1.05);
+            transform: scale(1);
           }
 
           .swiper-pagination-bullet {
-            width: 10px;
-            height: 10px;
-            background: rgba(255, 255, 255, 0.5);
-            opacity: 1;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            width: 8px;
+            height: 8px;
+            background: var(--glass-bg-strong);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(var(--backdrop-blur));
+            -webkit-backdrop-filter: blur(var(--backdrop-blur));
           }
 
           .swiper-pagination-bullet-active {
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            width: 32px;
-            border-radius: 6px;
-            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.6),
-                        0 0 20px rgba(139, 92, 246, 0.4);
+            background: #6366f1;
+            width: 28px;
+            border-radius: 5px;
+            opacity: 1;
+            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
           }
         `}</style>
       </div>
 
       {/* Side Promotional Banners - Right Side with Timeline */}
-      <div className="hidden lg2:flex lg2:flex-col lg2:w-[15%] gap-3 overflow-y-auto max-h-[280px] sm:max-h-[350px] md:max-h-[420px] lg:max-h-[480px]" style={{ scrollbarWidth: 'thin' }}>
+      <div ref={containerRef} className="hidden lg2:flex lg2:flex-col lg2:w-[15%] gap-3 overflow-y-auto max-h-[280px] sm:max-h-[350px] md:max-h-[420px] lg:max-h-[480px]" style={{ scrollbarWidth: 'thin' }}>
         {sidePromos.slice(0, 5).map((promo, index) => {
           const isActive = index === activeIndex;
           
           return (
             <div
               key={promo.id}
+              ref={(el) => { thumbnailRefs.current[index] = el; }}
               onClick={() => handleThumbnailClick(index)}
-              className={`relative group overflow-hidden rounded-xl cursor-pointer transition-all duration-500 ${
+              className={`relative group overflow-hidden rounded-xl cursor-pointer transition-all duration-300 backdrop-blur-sm ${
                 isActive 
-                  ? "ring-4 ring-indigo-500 shadow-2xl" 
-                  : "ring-2 ring-transparent hover:ring-indigo-300"
+                  ? "ring-2 ring-indigo-500 shadow-lg" 
+                  : "ring-1 ring-transparent hover:ring-indigo-400"
               }`}
               style={{
                 height: "110px",
                 flexShrink: 0,
                 background: isActive 
-                  ? "linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1))"
-                  : "linear-gradient(135deg, rgba(243, 244, 246, 0.5), rgba(229, 231, 235, 0.5))",
+                  ? "rgba(99, 102, 241, 0.15)"
+                  : "var(--glass-bg)",
+                backdropFilter: "blur(var(--backdrop-blur))",
+                WebkitBackdropFilter: "blur(var(--backdrop-blur))",
+                border: "1px solid var(--glass-border)",
               }}
             >
               <div className="relative w-full h-full overflow-hidden">
                 <img
                   src={promo.img}
                   alt={promo.alt}
-                  className={`w-full h-full object-cover transition-all duration-700 ease-out ${
+                  className={`w-full h-full object-cover transition-all duration-500 ease-out ${
                     isActive 
-                      ? "scale-105 brightness-110" 
-                      : "group-hover:scale-110 group-hover:brightness-105"
+                      ? "scale-105 brightness-105" 
+                      : "group-hover:scale-105 group-hover:brightness-105"
                   }`}
                 />
                 
-                {/* Active glow overlay */}
+                {/* Active overlay */}
                 {isActive && (
                   <div 
-                    className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 via-purple-500/10 to-transparent"
+                    className="absolute inset-0 bg-indigo-500/10"
                     style={{
-                      animation: "glow-pulse 2s ease-in-out infinite",
+                      animation: "glass-glow 2s ease-in-out infinite",
                     }}
                   />
                 )}
                 
-                {/* Hover gradient overlay */}
-                <div className={`absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/10 transition-opacity duration-300 ${
+                {/* Hover overlay */}
+                <div className={`absolute inset-0 bg-black/5 transition-opacity duration-300 ${
                   isActive ? "opacity-0" : "opacity-0 group-hover:opacity-100"
                 }`} />
                 
@@ -249,36 +290,19 @@ const Carousel: FC = () => {
                 )} */}
 
                 {/* Timeline Progress Bar */}
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-black/20 backdrop-blur-sm">
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-black/15">
                   <div
-                    className={`h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 transition-all duration-100 ease-linear relative overflow-hidden`}
+                    className={`h-full bg-indigo-500 transition-all duration-100 ease-linear`}
                     style={{
                       width: isActive ? `${progress}%` : "0%",
                     }}
-                  >
-                    {/* Animated shine on progress bar */}
-                    <div 
-                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
-                      style={{
-                        animation: "shimmer 1s infinite",
-                      }}
-                    />
-                  </div>
+                  />
                 </div>
 
 
               </div>
 
-              {/* Outer glow effect for active slide */}
-              {isActive && (
-                <div 
-                  className="absolute -inset-1 rounded-xl opacity-75 blur-md -z-10"
-                  style={{
-                    background: "linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899)",
-                    animation: "glow-pulse 2s ease-in-out infinite",
-                  }}
-                />
-              )}
+
             </div>
           );
         })}

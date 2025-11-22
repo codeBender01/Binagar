@@ -38,14 +38,19 @@ const ProductCard: FC<ProductCardProps> = ({
   }, [externalIsLiked]);
   return (
     <div
-      className="min-w-[200px] w-[97%] bg-appBarColor p-[18px] flex flex-col justify-between rounded-[20px]"
+      className="min-w-[200px] w-[97%] bg-cardBg p-[18px] flex flex-col justify-between rounded-2xl backdrop-blur-sm hover:shadow-lg transition-all duration-300"
       onClick={() => navigate("/home/product")}
+      style={{
+        border: "1px solid var(--color-borderGray)",
+        backdropFilter: "blur(8px)",
+        WebkitBackdropFilter: "blur(8px)",
+      }}
     >
-      <div className="w-[100%] h-[180px] bg-gray-300 rounded-[20px] relative">
+      <div className="w-[100%] h-[180px] bg-gray-100 dark:bg-gray-800 rounded-2xl relative overflow-hidden">
         <img
           src={isService ? blue : drill}
           alt="product"
-          className="object-contain h-[100%] w-[100%] rounded-[4px]"
+          className="object-contain h-[100%] w-[100%] rounded-[4px] p-4"
         />
 
         <div className="absolute top-3 right-3 bg-red text-white text-sm2 rounded-full h-[40px] w-[40px] flex items-center justify-center font-main"></div>
@@ -91,7 +96,7 @@ const ProductCard: FC<ProductCardProps> = ({
           }}
           onMouseEnter={() => setIsFavoriteHovered(true)}
           onMouseLeave={() => setIsFavoriteHovered(false)}
-          className=" text-white hover:text-primary h-[36px] w-[36px] rounded-[6px] bg-primary border-gray-300 flex items-center justify-center hover:bg-white duration-200 cursor-pointer"
+          className="text-white hover:text-primary h-[36px] w-[36px] rounded-lg bg-primary border-gray-300 flex items-center justify-center hover:bg-white transition-all duration-300 cursor-pointer"
         >
           {isFavoriteClicked || isFavoriteHovered ? (
             <IoMdHeart size={24} />

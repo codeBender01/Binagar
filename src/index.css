@@ -60,54 +60,61 @@
   /* Button Colors */
   --color-buttonPrimary: #6366f1;
   --color-buttonPrimaryHover: #4f46e5;
-  --color-buttonSecondary: #35269b;
-  --color-buttonSecondaryHover: #2d1f82;
+  --color-buttonSecondary: #3b82f6;
+  --color-buttonSecondaryHover: #2563eb;
+
+  /* Glassmorphism Variables */
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-bg-strong: rgba(255, 255, 255, 0.15);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --backdrop-blur: 12px;
+  --backdrop-blur-strong: 20px;
 
   /* Shadow Colors */
-  --shadow-sm: rgba(0, 0, 0, 0.05);
-  --shadow-md: rgba(0, 0, 0, 0.1);
-  --shadow-lg: rgba(0, 0, 0, 0.15);
-  --shadow-colored: rgba(50, 50, 93, 0.25);
-  --shadow-card: 0px 0px 0px 0.5px rgba(0, 0, 0, 0.03),
-    0px 5px 22px 0px rgba(0, 0, 0, 0.04);
-  --shadow-brand: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
-    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  --shadow-sm: rgba(0, 0, 0, 0.04);
+  --shadow-md: rgba(0, 0, 0, 0.08);
+  --shadow-lg: rgba(0, 0, 0, 0.12);
+  --shadow-colored: rgba(99, 102, 241, 0.15);
+  --shadow-card: 0px 1px 3px rgba(0, 0, 0, 0.05),
+    0px 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-glass: 0 8px 32px rgba(31, 38, 135, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
 
   --animate-spin-slow: spin-slow 3s linear infinite;
 }
 
 .dark {
   /* Background Colors */
-  --color-background: #1e1e1e;
-  --color-appBarColor: #3a3a3a;
-  --color-cardBg: #2d2d2d;
-  --color-modalBg: #2d2d2d;
+  --color-background: #0f0f23;
+  --color-appBarColor: rgba(30, 30, 46, 0.8);
+  --color-cardBg: rgba(40, 40, 58, 0.6);
+  --color-modalBg: #1e1e2e;
 
   /* Brand Colors - adjusted for dark mode */
   --color-primary: #22c55e;
-  --color-secondary: #ef4444;
+  --color-secondary: #f87171;
   --color-mainBlue: #60a5fa;
 
   /* Text Colors */
-  --color-text-primary: #e5e7eb;
-  --color-text-secondary: #9ca3af;
-  --color-text-muted: #6b7280;
+  --color-text-primary: #f5f5f7;
+  --color-text-secondary: #a8a8b3;
+  --color-text-muted: #6e6e80;
   --color-text-inverse: #1f2937;
   --color-gray: #9ca3af;
   --color-gray2: #d1d5db;
   --color-gray3: #6b7280;
 
   /* Border Colors */
-  --color-borderGray: #404040;
-  --color-border: #404040;
-  --color-borderLight: #525252;
+  --color-borderGray: rgba(255, 255, 255, 0.1);
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-borderLight: rgba(255, 255, 255, 0.12);
 
   /* UI Element Colors */
   --color-activeTabGray: #525252;
   --color-iconGray: #9ca3af;
-  --color-tableBg: #374151;
-  --color-sidebarActive: #374151;
+  --color-tableBg: #252538;
+  --color-sidebarActive: #2a2a40;
   --color-warning: #fbbf24;
 
   /* Button Colors */
@@ -116,16 +123,23 @@
   --color-buttonSecondary: #4f46e5;
   --color-buttonSecondaryHover: #6366f1;
 
+  /* Glassmorphism Variables - Dark Mode */
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-bg-strong: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --backdrop-blur: 12px;
+  --backdrop-blur-strong: 20px;
+
   /* Shadow Colors */
-  --shadow-sm: rgba(0, 0, 0, 0.3);
-  --shadow-md: rgba(0, 0, 0, 0.4);
-  --shadow-lg: rgba(0, 0, 0, 0.5);
-  --shadow-colored: rgba(0, 0, 0, 0.5);
-  --shadow-card: 0px 0px 0px 0.5px rgba(255, 255, 255, 0.05),
-    0px 5px 22px 0px rgba(0, 0, 0, 0.3);
-  --shadow-brand: rgba(255, 255, 255, 0.05) 0px 1px 1px 0px inset,
-    rgba(0, 0, 0, 0.5) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.6) 0px 30px 60px -30px;
+  --shadow-sm: rgba(0, 0, 0, 0.4);
+  --shadow-md: rgba(0, 0, 0, 0.5);
+  --shadow-lg: rgba(0, 0, 0, 0.6);
+  --shadow-colored: rgba(99, 102, 241, 0.3);
+  --shadow-card: 0px 1px 3px rgba(0, 0, 0, 0.4),
+    0px 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 body {
@@ -191,13 +205,13 @@ body {
   }
 }
 
-/* Glow pulse animation */
-@keyframes glow-pulse {
+/* Glass glow animation */
+@keyframes glass-glow {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3), 0 0 40px rgba(99, 102, 241, 0.1);
+    opacity: 0.8;
   }
   50% {
-    box-shadow: 0 0 30px rgba(99, 102, 241, 0.5), 0 0 60px rgba(99, 102, 241, 0.2);
+    opacity: 1;
   }
 }
 

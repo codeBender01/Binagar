@@ -26,7 +26,7 @@ const ProductCarousel: FC<ProductCarouselProps> = ({ products }) => {
   };
 
   return (
-    <div className="mt-8 flex flex-col gap-4">
+    <div className="mt-6 sm:mt-8 flex flex-col gap-3 sm:gap-4">
       {products.map((c) => {
         const items = hasProducts(c)
           ? c.products
@@ -40,10 +40,10 @@ const ProductCarousel: FC<ProductCarouselProps> = ({ products }) => {
 
         return (
           <div key={c.id}>
-            <div className="mt-[28px] mb-2 flex justify-between font-main font-bold text-lg">
-              <div>{c.name.tm}</div>
+            <div className="mt-4 sm:mt-[28px] mb-2 flex justify-between items-center font-main font-bold text-base sm:text-lg">
+              <div style={{ color: 'var(--color-text-primary)' }}>{c.name.tm}</div>
               {items.length <= 4 ? null : (
-                <div className="text-sm text-primary border-primary border bg-white rounded-lg p-2 cursor-pointer hover:bg-primary hover:text-white duration-200">
+                <div className="text-xs sm:text-sm text-primary border-primary border bg-white dark:bg-cardBg rounded-lg px-2 sm:px-3 py-1.5 sm:py-2 cursor-pointer hover:bg-primary hover:text-white transition-all duration-300 whitespace-nowrap">
                   hemmesini görmek
                 </div>
               )}

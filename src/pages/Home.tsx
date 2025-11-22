@@ -24,14 +24,14 @@ const Home: FC = () => {
   });
 
   return (
-    <div className="mt-4 w-[95%] mx-auto mb-[75px] lg:mb-[0px]">
+    <div className="mt-3 sm:mt-4 w-full sm:w-[95%] mx-auto mb-[75px] lg:mb-[0px] px-3 sm:px-0">
       <Carousel />
 
       <div
-        className="text-[32px] flex items-center justify-center gap-2 font-geo mt-8 mb-4"
+        className="text-[24px] sm:text-[28px] md:text-[32px] flex items-center justify-center gap-2 font-geo mt-6 sm:mt-8 mb-3 sm:mb-4"
         style={{ color: "var(--color-text-primary)" }}
       >
-        <BiCategory />
+        <BiCategory className="text-[22px] sm:text-[28px] md:text-[32px]" />
         Kategoriýalar
       </div>
       <CategoriesList
@@ -41,10 +41,10 @@ const Home: FC = () => {
       />
 
       <div
-        className="text-[32px] flex items-center justify-center gap-2 font-geo mt-8 mb-4"
+        className="text-[24px] sm:text-[28px] md:text-[32px] flex items-center justify-center gap-2 font-geo mt-6 sm:mt-8 mb-3 sm:mb-4"
         style={{ color: "var(--color-text-primary)" }}
       >
-        <TbBrandAppgallery />
+        <TbBrandAppgallery className="text-[22px] sm:text-[28px] md:text-[32px]" />
         Brendlar
       </div>
       <BrandsList brands={brands ? brands : []} />

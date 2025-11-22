@@ -14,21 +14,26 @@ const CategoriesList: FC<CategoriesListProps> = ({ categories }) => {
         return (
           <div
             key={c.id}
-            className="flex flex-col items-center border border-borderGray h-[105px] font-main text-sm rounded-lg justify-center gap-2 cursor-pointer shadow-none transition-all duration-300 ease-out hover:shadow-[2px_10px_15px_0px_rgba(0,_0,_0,_0.1)] hover:scale-105"
-            style={{ color: "var(--color-text-primary)" }}
+            className="flex flex-col items-center bg-cardBg h-[105px] font-main text-sm rounded-xl justify-center gap-2 cursor-pointer transition-all duration-300 ease-out hover:shadow-lg hover:scale-[1.02] backdrop-blur-sm"
+            style={{ 
+              color: "var(--color-text-primary)",
+              border: "1px solid var(--color-borderGray)",
+              backdropFilter: "blur(8px)",
+              WebkitBackdropFilter: "blur(8px)",
+            }}
           >
             {c.imageUrl ? (
-              <div className="bg-gray-300 h-[40px] w-[40px]">
-                <img src={c.imageUrl} alt="" />
+              <div className="bg-gray-300 h-[40px] w-[40px] rounded-lg overflow-hidden">
+                <img src={c.imageUrl} alt="" className="w-full h-full object-cover" />
               </div>
             ) : (
-              <div className="bg-primary text-white p-3 rounded-lg">
+              <div className="bg-primary text-white p-3 rounded-xl shadow-sm">
                 <BiCategory size={24} />
               </div>
             )}
 
             <div
-              className="text-center line-clamp-1"
+              className="text-center line-clamp-1 px-2"
               style={{ color: "inherit" }}
             >
               {c.name.tm}
@@ -38,14 +43,19 @@ const CategoriesList: FC<CategoriesListProps> = ({ categories }) => {
       })}
 
       <div
-        className="flex flex-col items-center border border-borderGray h-[105px] font-main text-sm rounded-lg justify-center gap-2  hover:opacity-95 hover:scale-110 transition-all duration-500 cursor-pointer"
-        style={{ color: "var(--color-text-primary)" }}
+        className="flex flex-col items-center bg-cardBg h-[105px] font-main text-sm rounded-xl justify-center gap-2 hover:scale-[1.02] transition-all duration-300 cursor-pointer backdrop-blur-sm"
+        style={{ 
+          color: "var(--color-text-primary)",
+          border: "1px solid var(--color-borderGray)",
+          backdropFilter: "blur(8px)",
+          WebkitBackdropFilter: "blur(8px)",
+        }}
       >
-        <div className="bg-primary text-white p-3 rounded-lg">
+        <div className="bg-primary text-white p-3 rounded-xl shadow-sm">
           <BiCategory size={24} />
         </div>
 
-        <div className="text-center line-clamp-1" style={{ color: "inherit" }}>
+        <div className="text-center line-clamp-1 px-2" style={{ color: "inherit" }}>
           Hemmesini görmek
         </div>
       </div>

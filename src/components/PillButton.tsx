@@ -16,20 +16,26 @@ const PillButton: FC<PillButtonProps> = ({ text, icon, onClick, path }) => {
     <div
       onClick={onClick}
       className={`${
-        location.pathname === path ? "bg-primary text-white border-none" : ""
-      } w-fit flex items-center gap-[12px] border-[1px] rounded-[10px] lg:rounded-full p-1 lg:pr-[22px] border-borderGray group cursor-pointer hover:bg-primary duration-200`}
+        location.pathname === path 
+          ? "bg-primary text-white shadow-md" 
+          : "bg-white/80 dark:bg-white/9"
+      } w-fit flex items-center gap-[12px] border rounded-[10px] lg:rounded-full p-1 lg:pr-[22px] border-borderGray group cursor-pointer hover:bg-primary hover:text-white transition-all duration-300 ease-out backdrop-blur-sm`}
+      style={{
+        backdropFilter: "blur(8px)",
+        WebkitBackdropFilter: "blur(8px)",
+      }}
     >
       <div
         className={`${
           location.pathname === path
             ? "text-primary bg-white"
             : "bg-primary text-white"
-        } text-[24px] rounded-full p-2 group-hover:bg-white  group-hover:text-primary duration-200`}
+        } text-[24px] rounded-full p-2 group-hover:bg-white group-hover:text-primary transition-all duration-300`}
       >
         {icon}
       </div>
 
-      <div className="hidden lg:flex font-geo group-hover:text-white duration-200" style={{ color: location.pathname === path ? 'inherit' : 'var(--color-text-primary)' }}>
+      <div className="hidden lg:flex font-geo group-hover:text-white transition-colors duration-300" style={{ color: location.pathname === path ? 'inherit' : 'var(--color-text-primary)' }}>
         {text}
       </div>
     </div>
