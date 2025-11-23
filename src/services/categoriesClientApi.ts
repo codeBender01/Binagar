@@ -4,7 +4,7 @@ import { Category } from "../interfaces/categories.interface";
 import {
   CategoryProductResp,
   ProductFilters,
-} from "../interfaces/product.interface";
+} from "../interfaces/products";
 
 export const categoriesClientApi = createApi({
   reducerPath: "categoriesClientApi",

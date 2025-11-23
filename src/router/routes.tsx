@@ -7,9 +7,7 @@ import Home from "../pages/Home";
 import ClientLayout from "../layouts/ClientLayout";
 import AdminLayout from "../layouts/AdminLayout";
 
-// const AdminLayout = lazy(() => import("../layouts/AdminLayout"));
-// const ClientLayout = lazy(() => import("../layouts/ClientLayout"));
-// const Home = lazy(() => import("../pages/Home"));
+
 const Product = lazy(() => import("../pages/Product"));
 const Basket = lazy(() => import("../pages/Basket"));
 const Brands = lazy(() => import("../pages/Brands"));
@@ -52,7 +50,7 @@ export default function Router() {
               <Product />
             </Suspense>
           ),
-          path: "product",
+          path: "product/:id",
         },
         {
           element: (

@@ -12,11 +12,14 @@ import "@ant-design/v5-patch-for-react-19";
 
 import { ThemeProvider } from "./store/themeContext.tsx";
 
+import ScrollToTop from "./components/ScrollToTop.tsx";
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ThemeProvider>
       <Provider store={store}>
         <BrowserRouter>
+          <ScrollToTop />
           <App />
         </BrowserRouter>
       </Provider>

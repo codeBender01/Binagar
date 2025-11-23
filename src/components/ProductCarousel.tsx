@@ -5,7 +5,7 @@ import ProductCard from "./ProductCard";
 
 import "swiper/css";
 
-import { ProductType } from "../interfaces/product.interface";
+import { ProductType } from "../interfaces/products";
 import { ServiceType } from "../interfaces/service.interface";
 
 export interface ProductCarouselProps {

@@ -1,14 +1,16 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import AnimatedButton from "./AnimatedButton";
 
 import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
-import { OneSeparateProduct } from "../interfaces/product.interface";
-
+import type { OneSeparateProduct } from "../interfaces/products";
 import drill from "../assets/drill.png";
 import blue from "../assets/blue.jpg";
-import { OneSeparateService } from "../interfaces/service.interface";
+import type { OneSeparateService } from "../interfaces/service.interface";
+import { RootState } from "../store";
+import { toggleLike } from "../store/likedSlice";
 
 interface ProductCardProps {
   product: OneSeparateProduct | OneSeparateService;
@@ -20,26 +22,37 @@ interface ProductCardProps {
 const ProductCard: FC<ProductCardProps> = ({
   product,
   isService,
-  isLiked: externalIsLiked,
   onFavoriteToggle,
 }) => {
   const navigate = useNavigate();
-
-  const [isFavoriteClicked, setIsFavoriteClicked] = useState(
-    externalIsLiked ?? false
-  );
+  const dispatch = useDispatch();
+  
+  // Check if product is liked from Redux store
+  const likedProducts = useSelector((state: RootState) => state.liked.items);
+  const isLikedInStore = likedProducts.some((p) => p.id === product.id);
+  
   const [isFavoriteHovered, setIsFavoriteHovered] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
 
-  // Update internal state when external isLiked prop changes
-  useEffect(() => {
-    if (externalIsLiked !== undefined) {
-      setIsFavoriteClicked(externalIsLiked);
+  const handleLikeClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    
+    // Only allow liking products, not services for now (as per interface mismatch)
+    if (!isService) {
+      dispatch(toggleLike(product as OneSeparateProduct));
+      setIsAnimating(true);
+      setTimeout(() => setIsAnimating(false), 300);
     }
-  }, [externalIsLiked]);
+    
+    if (onFavoriteToggle) {
+      onFavoriteToggle(product.id);
+    }
+  };
+
   return (
     <div
       className="min-w-[200px] w-[97%] bg-cardBg p-[18px] flex flex-col justify-between rounded-2xl backdrop-blur-sm hover:shadow-lg transition-all duration-300"
-      onClick={() => navigate("/home/product")}
+      onClick={() => navigate(`/home/product/${product.id}`, { state: { product } })}
       style={{
         border: "1px solid var(--color-borderGray)",
         backdropFilter: "blur(8px)",
@@ -86,19 +99,12 @@ const ProductCard: FC<ProductCardProps> = ({
         <AnimatedButton />
 
         <div
-          onClick={(e) => {
-            e.stopPropagation();
-            const newState = !isFavoriteClicked;
-            setIsFavoriteClicked(newState);
-            if (onFavoriteToggle) {
-              onFavoriteToggle(product.id);
-            }
-          }}
+          onClick={handleLikeClick}
           onMouseEnter={() => setIsFavoriteHovered(true)}
           onMouseLeave={() => setIsFavoriteHovered(false)}
-          className="text-white hover:text-primary h-[36px] w-[36px] rounded-lg bg-primary border-gray-300 flex items-center justify-center hover:bg-white transition-all duration-300 cursor-pointer"
+          className={`text-white hover:text-primary h-[36px] w-[36px] rounded-lg bg-primary border-gray-300 flex items-center justify-center hover:bg-white transition-all duration-300 cursor-pointer ${isAnimating ? 'animate-like' : ''}`}
         >
-          {isFavoriteClicked || isFavoriteHovered ? (
+          {isLikedInStore || isFavoriteHovered ? (
             <IoMdHeart size={24} />
           ) : (
             <IoMdHeartEmpty

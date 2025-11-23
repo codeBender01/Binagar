@@ -1,57 +1,12 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { IoMdHeart } from "react-icons/io";
+import { useSelector } from "react-redux";
 import ProductCard from "../components/ProductCard";
-import { OneSeparateProduct } from "../interfaces/product.interface";
+import { RootState } from "../store";
 
 const Liked: FC = () => {
-  // TODO: Replace with actual liked products from state/API
-  const [likedProducts, setLikedProducts] = useState<OneSeparateProduct[]>([
-    // Mock data - replace with actual data
-    {
-      id: "1",
-      name_tm: "Product Title 1",
-      name_en: "Product Title 1",
-      name_ru: "Product Title 1",
-      description_tm: "Product description",
-      description_en: "Product description",
-      description_ru: "Product description",
-      price: "500",
-      currency: "TMT",
-      barcode: "123456",
-      sku: "SKU001",
-      stockQuantity: 10,
-      minOrderQuantity: 1,
-      salesLimitQuantity: 5,
-      status: "ACTIVE",
-      images: [],
-      categories: [],
-      store: null,
-    },
-    {
-      id: "2",
-      name_tm: "Product Title 2",
-      name_en: "Product Title 2",
-      name_ru: "Product Title 2",
-      description_tm: "Product description",
-      description_en: "Product description",
-      description_ru: "Product description",
-      price: "750",
-      currency: "TMT",
-      barcode: "123457",
-      sku: "SKU002",
-      stockQuantity: 15,
-      minOrderQuantity: 1,
-      salesLimitQuantity: 5,
-      status: "ACTIVE",
-      images: [],
-      categories: [],
-      store: null,
-    },
-  ]);
-
-  const handleRemoveFromLiked = (productId: string) => {
-    setLikedProducts((prev) => prev.filter((p) => p.id !== productId));
-  };
+  // Liked products state from Redux
+  const likedProducts = useSelector((state: RootState) => state.liked.items);
 
   return (
     <div className="w-[90%] mx-auto mb-[75px] lg:mb-[0px]">
@@ -105,8 +60,6 @@ const Liked: FC = () => {
                 key={product.id}
                 product={product}
                 isService={false}
-                isLiked={true}
-                onFavoriteToggle={handleRemoveFromLiked}
               />
             ))}
           </div>
