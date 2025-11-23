@@ -6,6 +6,7 @@ import { brandsClientAPi } from "../services/brandsClientApi";
 import { servicesApi } from "../services/servicesApi";
 import { productsApi } from "../services/productsApi";
 import likedReducer from "./likedSlice";
+import basketReducer from "./basketSlice";
 
 const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ const store = configureStore({
     [servicesApi.reducerPath]: servicesApi.reducer,
     [productsApi.reducerPath]: productsApi.reducer,
     liked: likedReducer,
+    basket: basketReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(

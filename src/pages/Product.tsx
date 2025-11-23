@@ -14,6 +14,7 @@ import { Spin } from "antd";
 import { OneSeparateProduct } from "../interfaces/products";
 import { RootState } from "../store";
 import { toggleLike } from "../store/likedSlice";
+import { addToBasket } from "../store/basketSlice";
 
 const Product: FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -43,6 +44,14 @@ const Product: FC = () => {
       dispatch(toggleLike(product));
       setIsAnimating(true);
       setTimeout(() => setIsAnimating(false), 300);
+    }
+  };
+
+  const handleAddToCart = () => {
+    if (product) {
+      dispatch(addToBasket(product));
+      setIsCartClicked(true);
+      setTimeout(() => setIsCartClicked(false), 2000);
     }
   };
 
@@ -175,7 +184,7 @@ const Product: FC = () => {
                   flex: 1,
                   height: '48px',
                 }}
-                onClick={() => setIsCartClicked(true)}
+                onClick={handleAddToCart}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.boxShadow = '0 6px 20px rgba(99, 102, 241, 0.3)';
                 }}

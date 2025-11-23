@@ -6,7 +6,11 @@ import { FaBox } from "react-icons/fa6";
 
 import "./index.css";
 
-const AnimatedButton: FC = () => {
+interface AnimatedButtonProps {
+  onClick?: (e: React.MouseEvent) => void;
+}
+
+const AnimatedButton: FC<AnimatedButtonProps> = ({ onClick }) => {
   const [isClicked, setIsClicked] = useState(false);
 
   return (
@@ -14,6 +18,10 @@ const AnimatedButton: FC = () => {
       onClick={(e) => {
         e.stopPropagation();
         setIsClicked(true);
+        if (onClick) {
+          onClick(e);
+        }
+        setTimeout(() => setIsClicked(false), 2000); // Reset animation after 2s
       }}
       className={`cart-button bg-primary font-main ${
         isClicked ? "clicked" : ""

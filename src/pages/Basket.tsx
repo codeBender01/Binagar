@@ -1,4 +1,5 @@
 import { FC, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { Table, Radio, RadioChangeEvent, Input } from "antd";
 
@@ -10,38 +11,30 @@ import { MdDeleteOutline } from "react-icons/md";
 import { IoIosArrowRoundForward } from "react-icons/io";
 
 import "../antd.css";
-
-interface BasketItem {
-  productImg: string;
-  productName: string;
-  price: string;
-  sum: string;
-  id?: string;
-}
+import { RootState } from "../store";
+import { BasketItem, removeFromBasket, updateAmount } from "../store/basketSlice";
 
 const Basket: FC = () => {
-  const [amounts, setAmounts] = useState<{ [key: string]: number }>({
-    "1": 1,
-    "2": 1,
-  });
+  const dispatch = useDispatch();
+  const basketItems = useSelector((state: RootState) => state.basket.items);
   const [paymentType, setPaymentType] = useState("cash");
 
   const columns = [
     {
       title: "Harydyň suraty",
-      dataIndex: "productImg",
+      dataIndex: "images",
       key: "product",
-      render: (val: string) => {
+      render: (val: string[]) => {
         return (
           <div className="w-[120px] h-[120px]">
-            <img src={val} alt="" className="h-[100%] w-[100%]" />
+            <img src={val && val.length > 0 ? val[0] : drill} alt="" className="h-[100%] w-[100%] object-contain" />
           </div>
         );
       },
     },
     {
       title: "Harydyň ady",
-      dataIndex: "productName",
+      dataIndex: "name_tm",
       key: "productName",
       render: (val: string) => {
         return <div className="font-geo text-nowrap">{val}</div>;
@@ -51,8 +44,8 @@ const Basket: FC = () => {
       title: "Bahasy",
       dataIndex: "price",
       key: "price",
-      render: (val: string) => {
-        return <div className="font-geo">{val}</div>;
+      render: (val: string, record: BasketItem) => {
+        return <div className="font-geo">{val} {record.currency}</div>;
       },
     },
     {
@@ -74,42 +67,17 @@ const Basket: FC = () => {
     },
   ];
 
-  const rows: BasketItem[] = [
-    {
-      id: "1",
-      productImg: drill,
-      productName: "Product Tittle",
-      price: "500 tmt",
-      sum: "1000 tmt",
-    },
-    {
-      id: "2",
-      productImg: drill,
-      productName: "Product Tittle",
-      price: "500 tmt",
-      sum: "1000 tmt",
-    },
-  ];
-
   const handleAmountChange = (itemId: string, delta: number) => {
-    setAmounts((prev) => {
-      const newAmount = (prev[itemId] || 1) + delta;
-      return {
-        ...prev,
-        [itemId]: Math.max(1, newAmount),
-      };
-    });
+    dispatch(updateAmount({ id: itemId, delta }));
   };
 
   const handleDelete = (itemId: string) => {
-    // TODO: Implement delete functionality
-    console.log("Delete item:", itemId);
+    dispatch(removeFromBasket(itemId));
   };
 
-  const totalSum = rows.reduce((sum, item) => {
-    const amount = amounts[item.id || ""] || 1;
+  const totalSum = basketItems.reduce((sum, item) => {
     const price = parseFloat(item.price.replace(" tmt", "").replace(/\s/g, ""));
-    return sum + price * amount;
+    return sum + price * item.amount;
   }, 0);
 
   return (
@@ -136,8 +104,7 @@ const Basket: FC = () => {
 
           {/* Mobile Card View - shown on screens smaller than lg */}
           <div className="lg:hidden mt-6 flex flex-col gap-4">
-            {rows.map((item) => {
-              const amount = amounts[item.id || ""] || 1;
+            {basketItems.map((item) => {
               return (
                 <div
                   key={item.id}
@@ -146,33 +113,33 @@ const Basket: FC = () => {
                 >
                   <div className="w-[100px] h-[100px] flex-shrink-0">
                     <img
-                      src={item.productImg}
-                      alt={item.productName}
+                      src={item.images && item.images.length > 0 ? item.images[0] : drill}
+                      alt={item.name_tm}
                       className="w-full h-full object-contain rounded-lg"
                     />
                   </div>
                   <div className="flex-1 flex flex-col justify-between">
                     <div>
                       <div className="font-geo font-semibold text-[16px] mb-1">
-                        {item.productName}
+                        {item.name_tm}
                       </div>
                       <div
                         className="font-geo text-[14px] mb-2"
                         style={{ color: "var(--color-text-secondary)" }}
                       >
-                        {item.price}
+                        {item.price} {item.currency}
                       </div>
                     </div>
                     <div className="flex items-center justify-between">
                       <div className="min-w-[100px] flex rounded-full border-[1px] border-borderGray items-center justify-between p-2">
                         <div
                           onClick={() => {
-                            if (amount > 1) {
+                            if (item.amount > 1) {
                               handleAmountChange(item.id || "", -1);
                             }
                           }}
                           className={`bg-mainBlue text-white rounded-full h-[100%] p-1 text-md hover:opacity-80 duration-200 cursor-pointer ${
-                            amount === 1 ? "opacity-50 cursor-not-allowed" : ""
+                            item.amount === 1 ? "opacity-50 cursor-not-allowed" : ""
                           }`}
                         >
                           <AiOutlineMinus />
@@ -181,7 +148,7 @@ const Basket: FC = () => {
                           className="font-geo px-2"
                           style={{ color: "var(--color-text-primary)" }}
                         >
-                          {amount}
+                          {item.amount}
                         </div>
                         <div
                           onClick={() => handleAmountChange(item.id || "", 1)}
@@ -201,13 +168,18 @@ const Basket: FC = () => {
                       Umumy:{" "}
                       {parseFloat(
                         item.price.replace(" tmt", "").replace(/\s/g, "")
-                      ) * amount}{" "}
+                      ) * item.amount}{" "}
                       tmt
                     </div>
                   </div>
                 </div>
               );
             })}
+            {basketItems.length === 0 && (
+              <div className="text-center py-8 font-geo text-gray">
+                Sebediňiz boş
+              </div>
+            )}
           </div>
 
           {/* Desktop Table View - shown on lg and larger screens */}
@@ -222,17 +194,16 @@ const Basket: FC = () => {
                   return {
                     ...col,
                     render: (_: any, record: BasketItem) => {
-                      const amount = amounts[record.id || ""] || 1;
                       return (
                         <div className="min-w-[120px] flex rounded-full border-[1px] border-borderGray items-center justify-between p-2 font-geo">
                           <div
                             onClick={() => {
-                              if (amount > 1) {
+                              if (record.amount > 1) {
                                 handleAmountChange(record.id || "", -1);
                               }
                             }}
                             className={`bg-mainBlue text-white rounded-full h-[100%] p-1 text-md hover:opacity-80 duration-200 cursor-pointer ${
-                              amount === 1
+                              record.amount === 1
                                 ? "opacity-50 cursor-not-allowed"
                                 : ""
                             }`}
@@ -243,7 +214,7 @@ const Basket: FC = () => {
                             style={{ color: "var(--color-text-primary)" }}
                             className="font-geo"
                           >
-                            {amount}
+                            {record.amount}
                           </div>
                           <div
                             onClick={() =>
@@ -277,20 +248,20 @@ const Basket: FC = () => {
                   return {
                     ...col,
                     render: (_val: string, record: BasketItem) => {
-                      const amount = amounts[record.id || ""] || 1;
                       const price = parseFloat(
                         record.price.replace(" tmt", "").replace(/\s/g, "")
                       );
                       return (
-                        <div className="font-geo">{price * amount} tmt</div>
+                        <div className="font-geo">{price * record.amount} tmt</div>
                       );
                     },
                   };
                 }
                 return col;
               })}
-              dataSource={rows}
+              dataSource={basketItems}
               pagination={false}
+              rowKey="id"
             />
           </div>
 

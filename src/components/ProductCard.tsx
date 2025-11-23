@@ -11,11 +11,11 @@ import blue from "../assets/blue.jpg";
 import type { OneSeparateService } from "../interfaces/service.interface";
 import { RootState } from "../store";
 import { toggleLike } from "../store/likedSlice";
+import { addToBasket } from "../store/basketSlice";
 
 interface ProductCardProps {
   product: OneSeparateProduct | OneSeparateService;
   isService: boolean;
-  isLiked?: boolean;
   onFavoriteToggle?: (productId: string) => void;
 }
 
@@ -46,6 +46,13 @@ const ProductCard: FC<ProductCardProps> = ({
     
     if (onFavoriteToggle) {
       onFavoriteToggle(product.id);
+    }
+  };
+
+  const handleAddToBasket = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!isService) {
+      dispatch(addToBasket(product as OneSeparateProduct));
     }
   };
 
@@ -96,7 +103,7 @@ const ProductCard: FC<ProductCardProps> = ({
       </div>
 
       <div className="flex items-center mt-[14px] gap-2">
-        <AnimatedButton />
+        <AnimatedButton onClick={handleAddToBasket} />
 
         <div
           onClick={handleLikeClick}

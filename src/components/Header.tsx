@@ -43,14 +43,24 @@ const checkPath = () => {
 };
 
 
+import { useSelector } from "react-redux";
+import { RootState } from "../store";
+
 const Header: FC = () => {
   const navigate = useNavigate();
+  const basketItems = useSelector((state: RootState) => state.basket.items);
 
   const [openLoginModal, setOpenLoginModal] = useState(false);
   const [openSearchBar, setOpenSearchBar] = useState(false);
   const [active, setActive] = useState<string>("");
 
   const isDark = document.documentElement.classList.contains("dark");
+
+  const totalCount = basketItems.reduce((acc, item) => acc + item.amount, 0);
+  const totalPrice = basketItems.reduce((acc, item) => {
+    const price = parseFloat(item.price.replace(" tmt", "").replace(/\s/g, ""));
+    return acc + price * item.amount;
+  }, 0);
 
   const handleProfilimClick = () => {
     // Check if user is authenticated by checking localStorage
@@ -102,12 +112,12 @@ const Header: FC = () => {
               WebkitBackdropFilter: "blur(8px)",
             }}
           >
-            <div className="bg-primary text-white rounded-full p-2 group-hover:bg-white group-hover:text-primary transition-all duration-300">
+            <div className="bg-primary text-white rounded-full p-2 group-hover:bg-white group-hover:text-primary transition-all duration-300 relative">
               <LuShoppingBasket size={24} />
             </div>
 
             <div className="hidden lg:flex font-geo text-mainBlue group-hover:text-white transition-colors duration-300">
-              2 товара: 1 208 tmt
+              {totalCount} haryt: {totalPrice} tmt
             </div>
           </div>
           <div
