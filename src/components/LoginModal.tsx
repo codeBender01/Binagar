@@ -51,15 +51,48 @@ const LoginModal: FC<LoginModalProps> = ({ open, setOpen }) => {
   };
 
   const handleVerify = async () => {
-    const res = await verify({
-      phoneNumber: "+993" + phone,
+    // Prepare verification request based on login type
+    const verifyRequest: any = {
       code: verificationNumber as number,
-    });
+    };
 
-    if (res.data) {
-      message.success("Üstünlikli!");
-      setOpen(false);
+    // Add phoneNumber or email based on how user logged in
+    if (loginType === "phone") {
+      verifyRequest.phoneNumber = "+993" + phone;
     } else {
+      verifyRequest.email = email;
+    }
+
+    try {
+      const res = await verify(verifyRequest);
+      
+      // Debug: Log the entire response
+      console.log("Verification response:", res);
+
+      if (res.data) {
+      
+        // Save accessToken and user data to localStorage
+        const { accessToken, user } = res.data;
+        
+        console.log("Saving to localStorage:", { accessToken, user });
+        localStorage.setItem("accessToken", accessToken);
+        localStorage.setItem("user", JSON.stringify(user));
+        
+        // Verify it was saved
+        console.log("Saved accessToken:", localStorage.getItem("accessToken"));
+        console.log("Saved user:", localStorage.getItem("user"));
+        
+        message.success("Üstünlikli!");
+        setOpen(false);
+      } else if (res.error) {
+        console.error("Verification error:", res.error);
+        message.error("Ýalňyşlyk ýüze çykdy!");
+      } else {
+        console.error("Unexpected response:", res);
+        message.error("Ýalňyşlyk ýüze çykdy!");
+      }
+    } catch (error) {
+      console.error("Verification exception:", error);
       message.error("Ýalňyşlyk ýüze çykdy!");
     }
   };

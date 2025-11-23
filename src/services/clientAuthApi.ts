@@ -22,7 +22,7 @@ export const clientAuthApi = createApi({
         }),
       }
     ),
-    clientVerify: builder.mutation<ApiResponse<AuthResponseType>, Verification>(
+    clientVerify: builder.mutation<AuthResponseType, Verification>(
       {
         query: (obj) => ({
           url: "/auth/verify",

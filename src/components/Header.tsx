@@ -42,6 +42,7 @@ const checkPath = () => {
   return window.location.href.includes("profile");
 };
 
+
 const Header: FC = () => {
   const navigate = useNavigate();
 
@@ -50,6 +51,20 @@ const Header: FC = () => {
   const [active, setActive] = useState<string>("");
 
   const isDark = document.documentElement.classList.contains("dark");
+
+  const handleProfilimClick = () => {
+    // Check if user is authenticated by checking localStorage
+    const accessToken = localStorage.getItem("accessToken");
+    const user = localStorage.getItem("user");
+    
+    if (accessToken && user) {
+      // User is authenticated, navigate to profile page
+      navigate("/home/profile");
+    } else {
+      // User is not authenticated, show login modal
+      setOpenLoginModal(true);
+    }
+  }
 
   return (
     <header className={`${checkPath() && "hidden"} w-[100%] h-fit`}>
@@ -135,7 +150,7 @@ const Header: FC = () => {
             onClick={() => navigate("/home/liked")}
           />
           <PillButton
-            onClick={() => setOpenLoginModal(true)}
+            onClick={handleProfilimClick}
             text="Profilim"
             icon={<IoPersonCircleOutline />}
           />
