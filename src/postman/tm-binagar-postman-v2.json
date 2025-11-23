@@ -1,0 +1,1695 @@
+{
+  "info": {
+    "name": "tm-binagar",
+    "description": "",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "bruno",
+      "event": []
+    },
+    {
+      "name": "address",
+      "item": [
+        {
+          "name": "create-address",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA5NDVmYzdkLTFiNWYtNDFjOS1iNGE5LTU5NmQ1MGQ2NWYxNyIsInVzZXJuYW1lIjoiKzk5MzYxNTI4OTMyIiwidG9rZW5WZXJzaW9uIjo5LCJpYXQiOjE3NDI1NzY3MzUsImV4cCI6MTc0MjU3ODUzNX0.LyMsCaTlKCcROptdhW3C39YvIYPGtNm6riqU5VteoM8",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/address",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "address"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"house\": \"1553\",\n  \"street\": \"Wall street\",\n  \"city\": \"New York\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "elastic",
+      "item": [
+        {
+          "name": "add-data",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/search/data",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "search",
+                "data"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"index\": \"products\",\n  \"id\": \"1\",\n  \"data\": { \"text\": \"Apple iPhone 14\" }\n}\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "check",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:9200/",
+              "protocol": "http",
+              "host": [
+                "localhost:9200/"
+              ],
+              "path": [],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "create-index",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/search/index",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "search",
+                "index"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"index\": \"products\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "get-all-indices",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/search/indices",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "search",
+                "indices"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "search-products",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/search/products/?q=Gurluşyk",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "search",
+                "products",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "Gurluşyk"
+                }
+              ],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "test",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/search/test",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "search",
+                "test"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "auth",
+      "item": [
+        {
+          "name": "login",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "login"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    // \"email\": \"murdev00@gmail.com\"\n    \"phoneNumber\": \"+99361528932\",\n    \"password\": \"1111\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "logout",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/auth/logout",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "logout"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "refresh",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/auth/refresh-tokens",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "refresh-tokens"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "sms-traccar",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "cGYnPFBiTsy0cXN9kc5J_Z:APA91bEy0LJuU6_N4T6wMr9xhrB6bHX61Nq77Edkk61bvtKP8FfdUlLlUtCKgtsHe9fVjbt2SwRPjVfNxCVlAIKpaN7ZHLeMoS9dpl8MiYzbyLCYf0s-3Gs",
+                  "type": "string"
+                }
+              ]
+            },
+            "description": "",
+            "url": {
+              "raw": "https://www.traccar.org/sms",
+              "protocol": "https",
+              "host": [
+                "www",
+                "traccar",
+                "org"
+              ],
+              "path": [
+                "sms"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "test",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/auth/test",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "test"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "timar-send-otp",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "https://timar.com.tm/api/v1/auth/otp/send",
+              "protocol": "https",
+              "host": [
+                "timar",
+                "com",
+                "tm"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "otp",
+                "send"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"program\": \"web\",\n  \"language\": \"tm\",\n  \"phoneNumber\": \"+99361528932\",\n  \"divisionUuid\": \"59e81e16-771a-4908-b239-0efb905cd6a8\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "verify",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/auth/verify",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "verify"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    // \"email\": \"murdev00@gmail.com\",\n    \"phoneNumber\": \"+99361528932\",\n    \"code\" : 628114\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "category",
+      "item": [
+        {
+          "name": "create-category",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMxNTc5ZjNkLTA5YmEtNGU1Yi1iNzYxLWE5NTYzZTAwN2E5NiIsInVzZXJuYW1lIjoiKzk5MzYxNTI4OTMyIiwidG9rZW5WZXJzaW9uIjowLCJpYXQiOjE3NDM0ODI0NDAsImV4cCI6MTc0MzQ4NDI0MH0.2t3e-KCQ0VSoIbjSS7wAA9y2rYxabBmUFZZX8oGzopQ",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/category",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "category"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n \"name\": {\n      \"tm\": \"Arzanlaşykdaky harytlar\",\n      \"ru\": \"Продукция со скидкой\",\n      \"en\": \"Products on sale\"\n    },\n    \"parentId\": null, \n    \"type\": \"PRODUCT\"\n  }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "delete-category",
+          "event": [],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA5NDVmYzdkLTFiNWYtNDFjOS1iNGE5LTU5NmQ1MGQ2NWYxNyIsInVzZXJuYW1lIjoiKzk5MzYxNTI4OTMyIiwidG9rZW5WZXJzaW9uIjo5LCJpYXQiOjE3NDI3NTIyNDcsImV4cCI6MTc0Mjc1NDA0N30.sviHZ7s6qTDP7CvDE6nal5atP_d3cbwcLXn4Wtgmvbs",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/category/5c23b650-fc4f-411c-95e0-792833724a81",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "category",
+                "5c23b650-fc4f-411c-95e0-792833724a81"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "get-all-categories",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/category",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "category"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "image",
+      "item": [
+        {
+          "name": "delete-image",
+          "event": [],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/image",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "image"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": \"9f24360e-b30c-4ba2-9cba-29e0821bef5e\",\n  \"fileNames\": [\n    \"48d9bf1f-9291-473d-a34f-d8db10947fda-Ð¡Ð½Ð¸Ð¼Ð¾Ðº ÑÐºÑÐ°Ð½Ð° (25).png\",\n    \"13ed26fa-0ac7-4a59-a726-c77237a9de23-Ð¡Ð½Ð¸Ð¼Ð¾Ðº ÑÐºÑÐ°Ð½Ð° (31).png\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "upload-product-image",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA5NDVmYzdkLTFiNWYtNDFjOS1iNGE5LTU5NmQ1MGQ2NWYxNyIsInVzZXJuYW1lIjoiKzk5MzYxNTI4OTMyIiwidG9rZW5WZXJzaW9uIjoxMCwiaWF0IjoxNzQzNDA2NjgyLCJleHAiOjE3NDM0MDg0ODJ9.86LRJ29gHCR2KvpGu6eUGSP0v8NEXhjFgxpqQauP1IY",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/image/",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "image",
+                ""
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "entityId",
+                  "value": "9f24360e-b30c-4ba2-9cba-29e0821bef5e",
+                  "disabled": false,
+                  "type": "default"
+                },
+                {
+                  "key": "images",
+                  "value": [
+                    "C:\\Users\\User\\Pictures\\Screenshots\\Снимок экрана (25).png",
+                    "C:\\Users\\User\\Pictures\\Screenshots\\Снимок экрана (31).png"
+                  ],
+                  "disabled": false,
+                  "type": "default"
+                },
+                {
+                  "key": "entityType",
+                  "value": "product",
+                  "disabled": false,
+                  "type": "default"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "upload-service-image",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA5NDVmYzdkLTFiNWYtNDFjOS1iNGE5LTU5NmQ1MGQ2NWYxNyIsInVzZXJuYW1lIjoiKzk5MzYxNTI4OTMyIiwidG9rZW5WZXJzaW9uIjoxMCwiaWF0IjoxNzQzNDA5NTgyLCJleHAiOjE3NDM0MTEzODJ9.7QTqMTrt0gObxDrf7pQgJJUNq65SFiwCcqosZ-rP6ys",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/image/",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "image",
+                ""
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "entityId",
+                  "value": "ca05d9bc-14f8-41a9-a276-7d249e1509fa",
+                  "disabled": false,
+                  "type": "default"
+                },
+                {
+                  "key": "images",
+                  "value": [
+                    "C:\\Users\\User\\Pictures\\wallpapers\\8-bit-graphics-pixels-scene-with-city-sunset.jpg",
+                    "C:\\Users\\User\\Pictures\\wallpapers\\bright-pop-landscape-design.jpg"
+                  ],
+                  "disabled": false,
+                  "type": "default"
+                },
+                {
+                  "key": "entityType",
+                  "value": "service",
+                  "disabled": false,
+                  "type": "default"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "product",
+      "item": [
+        {
+          "name": "create-product",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMxNTc5ZjNkLTA5YmEtNGU1Yi1iNzYxLWE5NTYzZTAwN2E5NiIsInVzZXJuYW1lIjoiKzk5MzYxNTI4OTMyIiwidG9rZW5WZXJzaW9uIjowLCJpYXQiOjE3NDM0OTgwNjcsImV4cCI6MTc0MzQ5OTg2N30.rVsLOIeUcXEAjP9PHi0_EgYpQ6YMga4a1uLekykuRsE",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/product",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "product"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sku\": \"cm23234e\",\n  \"barcode\": \"bce544\",\n  \"specode\": \"SPc23347\",\n  \"nameTm\": \"Kondisioner Bocsh\",\n  \"nameRu\": \"Кондиционер Bosch\",\n  \"nameEn\": \"Air conditioner Bosch\",\n  \"descriptionTm\": \"Täze gurluşyk üçin ýokary hilli gipslar\",\n  \"descriptionRu\": \"Новые высококачественные материалы для строительства\",\n  \"descriptionEn\": \"New high-quality materials for construction\",\n  \"price\": 14500.64,\n  \"discount\": 50.00,\n  \"discountPercentage\": 2.5,\n  \"currency\": \"TMT\",\n  \"stockQuantity\": 500,\n  \"minOrderQuantity\": 20,\n  \"salesLimitQuantity\": 200,\n  \"brandId\": null,\n  \"tags\": [],\n  \"categories\": [\n    {\n      \"categoryId\": \"dfe26289-13ee-4ab2-835f-93087aff579d\",\n      \"isPrimary\": true,\n      \"priority\": 0\n    },\n    {\n      \"categoryId\": \"7db414c6-884a-4043-8931-88c9e6bd0e8e\",\n      \"isPrimary\": false,\n      \"priority\": 0\n    },\n    {\n      \"categoryId\": \"f5320000-3f23-409f-a2ed-647ee396d576\",\n      \"isPrimary\": false,\n      \"priority\": 0\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "delete-product",
+          "event": [],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA5NDVmYzdkLTFiNWYtNDFjOS1iNGE5LTU5NmQ1MGQ2NWYxNyIsInVzZXJuYW1lIjoiKzk5MzYxNTI4OTMyIiwidG9rZW5WZXJzaW9uIjo5LCJpYXQiOjE3NDI5NzM4MzIsImV4cCI6MTc0Mjk3NTYzMn0.ndhjT7yAcaYukF3F-EBrVqg5A3A1f25Nuk4XmWGhl7g",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/product/39793346-1883-48a3-8c18-ed6431f83873",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "product",
+                "39793346-1883-48a3-8c18-ed6431f83873"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "filter-products",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/product?categoryId=a61c97fa-c917-45f6-bdfd-95e1ea131586&priceOrder=desc",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "product"
+              ],
+              "query": [
+                {
+                  "key": "categoryId",
+                  "value": "a61c97fa-c917-45f6-bdfd-95e1ea131586"
+                },
+                {
+                  "key": "priceOrder",
+                  "value": "desc"
+                }
+              ],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "restore-product",
+          "event": [],
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA5NDVmYzdkLTFiNWYtNDFjOS1iNGE5LTU5NmQ1MGQ2NWYxNyIsInVzZXJuYW1lIjoiKzk5MzYxNTI4OTMyIiwidG9rZW5WZXJzaW9uIjo5LCJpYXQiOjE3NDI4NDY2ODgsImV4cCI6MTc0Mjg0ODQ4OH0.5MkbqBbZ8USL0PnV7v0mhoJm0Q7H1cqx65BUMcUKA9Q",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/product/restore/77cf1994-78e5-4ba7-b150-cdb746b7820e",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "product",
+                "restore",
+                "77cf1994-78e5-4ba7-b150-cdb746b7820e"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "soft-delete-product",
+          "event": [],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA5NDVmYzdkLTFiNWYtNDFjOS1iNGE5LTU5NmQ1MGQ2NWYxNyIsInVzZXJuYW1lIjoiKzk5MzYxNTI4OTMyIiwidG9rZW5WZXJzaW9uIjo5LCJpYXQiOjE3NDI4NDY2ODgsImV4cCI6MTc0Mjg0ODQ4OH0.5MkbqBbZ8USL0PnV7v0mhoJm0Q7H1cqx65BUMcUKA9Q",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/product/soft/77cf1994-78e5-4ba7-b150-cdb746b7820e",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "product",
+                "soft",
+                "77cf1994-78e5-4ba7-b150-cdb746b7820e"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "get-similar-products",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/product/similar/77cf1994-78e5-4ba7-b150-cdb746b7820e",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "product",
+                "similar",
+                "77cf1994-78e5-4ba7-b150-cdb746b7820e"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "get-product-by-id",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/product/77cf1994-78e5-4ba7-b150-cdb746b7820e",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "product",
+                "77cf1994-78e5-4ba7-b150-cdb746b7820e"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "update-product",
+          "event": [],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA5NDVmYzdkLTFiNWYtNDFjOS1iNGE5LTU5NmQ1MGQ2NWYxNyIsInVzZXJuYW1lIjoiKzk5MzYxNTI4OTMyIiwidG9rZW5WZXJzaW9uIjoxMCwiaWF0IjoxNzQzMzIxNjc2LCJleHAiOjE3NDMzMjM0NzZ9.R1OASg70iIMo3w-zFU3jH16QFks68ih5xP9rZt0n0JA",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/product/9f24360e-b30c-4ba2-9cba-29e0821bef5e",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "product",
+                "9f24360e-b30c-4ba2-9cba-29e0821bef5e"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sku\": \"dr678955\",\n  \"barcode\": \"bc67855\",\n  \"specode\": \"SPdr655\",\n  \"nameTm\": \"Gok Gipsokarton\",\n  \"nameRu\": \"Blue Новый Гипсокартон\",\n  \"nameEn\": \"Blue New Drywall\",\n  \"descriptionTm\": \"Täze gurluşyk üçin ýokary hilli gipsokarton\",\n  \"descriptionRu\": \"Новый высококачественный гипсокартон для строительства\",\n  \"descriptionEn\": \"New high-quality drywall for construction\",\n  \"price\": 25.00,\n  \"discount\": 3.00,\n  \"discountPercentage\": 12.00,\n  \"currency\": \"TMT\",\n  \"stockQuantity\": 300,\n  \"minOrderQuantity\": 10,\n  \"salesLimitQuantity\": 100,\n  \"brandId\": null,\n  \"tags\": [],\n  \"categories\": [\n{\n        \"categoryId\": \"a61c97fa-c917-45f6-bdfd-95e1ea131586\",\n        \"isPrimary\": true,\n        \"priority\": 0\n      },\n    {\n        \"categoryId\": \"acf1ced4-286f-47ec-b93d-f47f104570da\",\n        \"isPrimary\": false,\n        \"priority\": 1\n      }\n    \n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "get-products-for-homepage",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/product/home",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "product",
+                "home"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "super-admin",
+      "item": [
+        {
+          "name": "create-user",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/sadmin",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "sadmin"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"tazegeldi@gmail.com\",\n    \"roles\": [\"USER\", \"ADMIN\"],\n  \"password\" : \"1111\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "delete-user",
+          "event": [],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/sadmin/2b99e780-388f-481b-bb79-c9db730bb7a2",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "sadmin",
+                "2b99e780-388f-481b-bb79-c9db730bb7a2"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "restore-user",
+          "event": [],
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/sadmin/restore/d5f97013-1f2b-481a-983e-6a0020538733",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "sadmin",
+                "restore",
+                "d5f97013-1f2b-481a-983e-6a0020538733"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "soft-delete-user",
+          "event": [],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/sadmin/soft/d5f97013-1f2b-481a-983e-6a0020538733",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "sadmin",
+                "soft",
+                "d5f97013-1f2b-481a-983e-6a0020538733"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "update-user",
+          "event": [],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA5NDVmYzdkLTFiNWYtNDFjOS1iNGE5LTU5NmQ1MGQ2NWYxNyIsInVzZXJuYW1lIjoiKzk5MzYxNTI4OTMyIiwidG9rZW5WZXJzaW9uIjoxLCJpYXQiOjE3NDE4MDg2NTcsImV4cCI6MTc0MTgxMDQ1N30.c58ls2RLLJw23CNc6x0zaipRFRKx7l7gJzQj9217bEs",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/sadmin/62246926-db00-4ef6-ab83-74856592a33f",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "sadmin",
+                "62246926-db00-4ef6-ab83-74856592a33f"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"johndoe@example.com\",\n//   \"phoneNumber\": \"+99361234567\",\n  \"password\": \"securepassword123\",\n//   \"address\": [\n//     {\n//       \"city\": \"Ashgabat\",\n//       \"street\": \"Main Street\",\n//       \"house\": \"12A\"\n//     }\n//   ],\n  \"roles\": [\"ADMIN\", \"USER\"]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "user",
+      "item": [
+        {
+          "name": "find-user",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/user/+99361528932",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "user",
+                "+99361528932"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "profile",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA5NDVmYzdkLTFiNWYtNDFjOS1iNGE5LTU5NmQ1MGQ2NWYxNyIsInVzZXJuYW1lIjoiKzk5MzYxNTI4OTMyIiwidG9rZW5WZXJzaW9uIjo5LCJpYXQiOjE3NDMwNzU5NzksImV4cCI6MTc0MzA3Nzc3OX0.gX7z4Bq24NpojfBk1iuIsbjrh8_j-yhVNmceyujO-x0",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/user",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "user"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "update-user",
+          "event": [],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "auth": {
+              "type": "noauth"
+            },
+            "description": "",
+            "url": {
+              "raw": ""
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "brand",
+      "item": [
+        {
+          "name": "create-brand",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA5NDVmYzdkLTFiNWYtNDFjOS1iNGE5LTU5NmQ1MGQ2NWYxNyIsInVzZXJuYW1lIjoiKzk5MzYxNTI4OTMyIiwidG9rZW5WZXJzaW9uIjoxMCwiaWF0IjoxNzQzMTgyMzM2LCJleHAiOjE3NDMxODQxMzZ9.pLrOPzS_3W8V_3t1Sejn_m_6-gr_OvLKIY0hUnHysMA",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/brand",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "brand"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "DravelPro Plus",
+                  "disabled": false,
+                  "type": "default"
+                },
+                {
+                  "key": "description",
+                  "value": "best dravels in the world",
+                  "disabled": false,
+                  "type": "default"
+                },
+                {
+                  "key": "image",
+                  "value": [
+                    "C:\\Users\\User\\Downloads\\38cfc264-377e-432d-b031-bcae19d071f3.webp"
+                  ],
+                  "disabled": false,
+                  "type": "default"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "delete-brand",
+          "event": [],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA5NDVmYzdkLTFiNWYtNDFjOS1iNGE5LTU5NmQ1MGQ2NWYxNyIsInVzZXJuYW1lIjoiKzk5MzYxNTI4OTMyIiwidG9rZW5WZXJzaW9uIjoxMCwiaWF0IjoxNzQzMTgyMzM2LCJleHAiOjE3NDMxODQxMzZ9.pLrOPzS_3W8V_3t1Sejn_m_6-gr_OvLKIY0hUnHysMA",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/brand/f0c96592-2b99-4571-97bc-0ffc45cb0c19",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "brand",
+                "f0c96592-2b99-4571-97bc-0ffc45cb0c19"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        },
+        {
+          "name": "update-brand",
+          "event": [],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA5NDVmYzdkLTFiNWYtNDFjOS1iNGE5LTU5NmQ1MGQ2NWYxNyIsInVzZXJuYW1lIjoiKzk5MzYxNTI4OTMyIiwidG9rZW5WZXJzaW9uIjoxMCwiaWF0IjoxNzQzMzE3MDEwLCJleHAiOjE3NDMzMTg4MTB9.XjoHVdfkU524kUSE6NkUGgKL8kq6SvjrrwnxSB_J6jw",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/brand/c3a662e6-6fa5-48c0-a3ec-10e7c81e37cc",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "brand",
+                "c3a662e6-6fa5-48c0-a3ec-10e7c81e37cc"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "DravelPro Plus Ultra",
+                  "disabled": false,
+                  "type": "default"
+                },
+                {
+                  "key": "description",
+                  "value": "best dravels in the worldand ggalaxy",
+                  "disabled": false,
+                  "type": "default"
+                },
+                {
+                  "key": "image",
+                  "value": [
+                    "C:\\Users\\User\\Downloads\\photo_2025-03-24_17-48-39.jpg"
+                  ],
+                  "disabled": false,
+                  "type": "default"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "store",
+      "item": [
+        {
+          "name": "create-store",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA5NDVmYzdkLTFiNWYtNDFjOS1iNGE5LTU5NmQ1MGQ2NWYxNyIsInVzZXJuYW1lIjoiKzk5MzYxNTI4OTMyIiwidG9rZW5WZXJzaW9uIjoxMCwiaWF0IjoxNzQzMzIyMTk2LCJleHAiOjE3NDMzMjM5OTZ9.ZhVg3F9k_dMyPjCXKr3VaZoCNs6B-CoaVdI1I56bxfE",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/store",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "store"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Gold Computers",
+                  "disabled": false,
+                  "type": "default"
+                },
+                {
+                  "key": "email",
+                  "value": "goldcomp@gmail.com",
+                  "disabled": false,
+                  "type": "default"
+                },
+                {
+                  "key": "phoneNumber",
+                  "value": "+99371330355",
+                  "disabled": false,
+                  "type": "default"
+                },
+                {
+                  "key": "description",
+                  "value": "Komputer satýan dükan",
+                  "disabled": false,
+                  "type": "default"
+                },
+                {
+                  "key": "image",
+                  "value": [
+                    "C:\\Users\\User\\Downloads\\38cfc264-377e-432d-b031-bcae19d071f3.webp"
+                  ],
+                  "disabled": false,
+                  "type": "default"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "update-store",
+          "event": [],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA5NDVmYzdkLTFiNWYtNDFjOS1iNGE5LTU5NmQ1MGQ2NWYxNyIsInVzZXJuYW1lIjoiKzk5MzYxNTI4OTMyIiwidG9rZW5WZXJzaW9uIjoxMCwiaWF0IjoxNzQzMzMwMzc5LCJleHAiOjE3NDMzMzIxNzl9.XxAI0KtWRhoVusuiRDOWDh_K87blKEaxZsBVB3IHubY",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/store/d82c126f-d9d2-4a14-9f3e-c42e1af72b03",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "store",
+                "d82c126f-d9d2-4a14-9f3e-c42e1af72b03"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "Gold Computers pro",
+                  "disabled": false,
+                  "type": "default"
+                },
+                {
+                  "key": "email",
+                  "value": "goldcomp@gmail.com",
+                  "disabled": false,
+                  "type": "default"
+                },
+                {
+                  "key": "phoneNumber",
+                  "value": "+99371330355",
+                  "disabled": false,
+                  "type": "default"
+                },
+                {
+                  "key": "description",
+                  "value": "Best komputer satýan dükan",
+                  "disabled": false,
+                  "type": "default"
+                },
+                {
+                  "key": "image",
+                  "value": [
+                    "C:\\Users\\User\\Pictures\\wallpapers\\1332721.png"
+                  ],
+                  "disabled": false,
+                  "type": "default"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "service",
+      "item": [
+        {
+          "name": "create-service",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA5NDVmYzdkLTFiNWYtNDFjOS1iNGE5LTU5NmQ1MGQ2NWYxNyIsInVzZXJuYW1lIjoiKzk5MzYxNTI4OTMyIiwidG9rZW5WZXJzaW9uIjoxMCwiaWF0IjoxNzQzNDA5NTgyLCJleHAiOjE3NDM0MTEzODJ9.7QTqMTrt0gObxDrf7pQgJJUNq65SFiwCcqosZ-rP6ys",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/service",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "service"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name_tm\": \"Some Name in Turkmen\",\n  \"name_ru\": \"Some Name in Russian\",\n  \"name_en\": \"Some Name in English\",\n  \"description_tm\": \"Some description in Turkmen\",\n  \"description_ru\": \"Some description in Russian\",\n  \"description_en\": \"Some description in English\",\n  \"price\": 99.99,\n  \"duration\": 60,\n//   \"categoryId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"isActive\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "order",
+      "item": [
+        {
+          "name": "create-order",
+          "event": [],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMxNTc5ZjNkLTA5YmEtNGU1Yi1iNzYxLWE5NTYzZTAwN2E5NiIsInVzZXJuYW1lIjoiKzk5MzYxNTI4OTMyIiwidG9rZW5WZXJzaW9uIjowLCJpYXQiOjE3NDM1MDQ1MjgsImV4cCI6MTc0MzUwNjMyOH0.ZRt173kNfaVxqcXLPAP4dPylLrRaFd0mFf4anxd5miQ",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/order",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "order"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"totalPrice\": 299.99,\n  \"orderItems\": [\n    {\n      \"productId\": \"0b9739c6-692c-45f0-b561-38bce2acb4f3\",\n      \"quantity\": 1,\n      \"price\": 14500.64,\n      \"total\": 14500.64\n    },\n    {\n      \"productId\": \"f3b787bf-429c-439d-8c0f-6d53395abb99\",\n      \"quantity\": 1,\n      \"price\": 14500.64,\n      \"total\": 14500.64\n    }\n  ],\n  \"payment\": {\n    \"method\": \"CASH\"\n  },\n  \"delivery\": {\n    \"tempAddress\": \"Parahat 4\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "get-current-user's-orders",
+          "event": [],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "key": "token",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMxNTc5ZjNkLTA5YmEtNGU1Yi1iNzYxLWE5NTYzZTAwN2E5NiIsInVzZXJuYW1lIjoiKzk5MzYxNTI4OTMyIiwidG9rZW5WZXJzaW9uIjowLCJpYXQiOjE3NDM1MDQ1MjgsImV4cCI6MTc0MzUwNjMyOH0.ZRt173kNfaVxqcXLPAP4dPylLrRaFd0mFf4anxd5miQ",
+                "type": "string"
+              }
+            },
+            "description": "",
+            "url": {
+              "raw": "http://localhost:3003/api/v1/order",
+              "protocol": "http",
+              "host": [
+                "localhost:3003"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "order"
+              ],
+              "query": [],
+              "variable": []
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": []
+}
